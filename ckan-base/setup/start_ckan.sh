@@ -23,9 +23,7 @@ then
 fi
 
 # Set the common uwsgi options
-echo "[prerun] attemptint to set uwsgi options"
 UWSGI_OPTS="--plugins http,python,gevent --socket /tmp/uwsgi.sock --uid 92 --gid 92 --http :5000 --master --enable-threads --pyhome /srv/app --paste config:/srv/app/production.ini --paste-logger --lazy-apps --gevent 2000 -p 2 -L"
-echo "[prerun] successfully set uwsgi options"
 
 # Check whether http basic auth password protection is enabled and enable basicauth routing on uwsgi respecfully
 if [ $? -eq 0 ]
