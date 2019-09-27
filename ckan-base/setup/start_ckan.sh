@@ -49,8 +49,10 @@ then
     # Start uwsgi
 #    sudo -u ckan -EH uwsgi $UWSGI_OPTS
     . $APP_DIR/bin/activate && cd $APP_DIR/src && \
-#    uwsgi $UWSGI_OPTS
-     sudo -u ckan -EH uwsgi $UWSGI_OPTS
+    echo "[prerun] attempting to start uwgsi"
+    uwsgi $UWSGI_OPTS
+    echo "[prerun] uwgsi started"
+#     sudo -u ckan -EH uwsgi $UWSGI_OPTS
   fi
 else
   echo "[prerun] failed...not starting CKAN."
