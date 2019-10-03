@@ -114,4 +114,5 @@ RUN for d in $APP_DIR/patches/*; do \
     
 RUN chown -R ckan:ckan ${APP_DIR}/*
 
-USER ckan
+# Prod build fails when user is ckan at the end of this script
+#USER ckan
