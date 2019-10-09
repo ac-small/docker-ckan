@@ -10,11 +10,13 @@ ENV APP_DIR=/srv/app
 ENV SRC_EXTENSIONS_DIR=/srv/app/src_extensions
 
 # Install packages needed by the dev requirements
+USER ROOT
 RUN apk add --no-cache libffi-dev && \
     apk add mc && \
     apk add vim
 
 # Install CKAN dev requirements
+USER CKAN
 RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     pip install --no-binary :all: -r https://raw.githubusercontent.com/ckan/ckan/${GIT_BRANCH}/dev-requirements.txt
 
