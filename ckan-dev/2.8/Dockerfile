@@ -9,6 +9,8 @@ MAINTAINER John Kolesar
 ENV APP_DIR=/srv/app
 ENV SRC_EXTENSIONS_DIR=/srv/app/src_extensions
 
+USER ROOT
+
 # Install packages needed by the dev requirements
 RUN apk add --no-cache libffi-dev && \
     apk add mc && \
@@ -24,3 +26,5 @@ RUN mkdir $SRC_EXTENSIONS_DIR
 COPY setup/start_ckan_development.sh ${APP_DIR}
 
 CMD ["/srv/app/start_ckan_development.sh"]
+
+USER 92
