@@ -48,8 +48,6 @@ RUN apk add --no-cache tzdata \
         python-dev \
         libxml2-dev \
         libxslt-dev \
-	libc-dev \
-	geos-dev \
         linux-headers && \
     # Create SRC_DIR
     mkdir -p ${SRC_DIR} && \
