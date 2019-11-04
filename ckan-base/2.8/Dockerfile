@@ -33,7 +33,6 @@ RUN apk add --no-cache tzdata \
         py2-gevent \
         uwsgi-gevent \
         libmagic \
-	libgeos-dev \
         curl \
         sudo && \
     # Packages to build CKAN requirements and plugins
