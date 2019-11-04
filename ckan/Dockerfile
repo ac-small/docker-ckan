@@ -72,7 +72,7 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
 RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     pip install -e "git+https://github.com/aafc-ckan/ckanext-scheming.git#egg=ckanext-scheming" && \
     pip install -e git+https://github.com/ckan/ckanext-fluent.git#egg=ckanext-fluent && \
-    pip install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/master/pip-requirements.txt && \
+    # pip install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/master/pip-requirements.txt && \
     pip install -e git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext-spatial && \
     pip install -r https://raw.githubusercontent.com/ckan/ckanext-geoview/master/pip-requirements.txt && \
     pip install -e git+https://github.com/ckan/ckanext-geoview.git#egg=ckanext-geoview && \
