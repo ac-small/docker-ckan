@@ -71,6 +71,8 @@ RUN echo "@postgres_latest http://dl-cdn.alpinelinux.org/alpine/v3.7/main/" >> /
     
 RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk add --update --no-cache geos@testing geos-dev@testing py3-geos@testing
+    
+RUN geos-config --cflags
 
 COPY setup/supervisord.conf /etc
 
