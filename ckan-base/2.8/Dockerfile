@@ -59,7 +59,6 @@ RUN apk add --no-cache tzdata \
     pip install supervisor && \
     mkdir /etc/supervisord.d && \
     pip install virtualenv && \
-    pip install shapely && \
     #pip wheel --wheel-dir=/wheels uwsgi gevent && \
     rm -rf ${SRC_DIR}/get-pip.py
 
