@@ -48,6 +48,8 @@ RUN apk add --no-cache tzdata \
         python-dev \
         libxml2-dev \
         libxslt-dev \
+	libc-dev \
+	geos-dev \
         linux-headers && \
     # Create SRC_DIR
     mkdir -p ${SRC_DIR} && \
@@ -59,6 +61,7 @@ RUN apk add --no-cache tzdata \
     pip install supervisor && \
     mkdir /etc/supervisord.d && \
     pip install virtualenv && \
+    pip install shapely && \
     #pip wheel --wheel-dir=/wheels uwsgi gevent && \
     rm -rf ${SRC_DIR}/get-pip.py
 
