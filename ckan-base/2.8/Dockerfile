@@ -16,8 +16,6 @@ ENV CKAN__PLUGINS=${CKAN__PLUGINS}
 
 WORKDIR ${APP_DIR}
 
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
-
 # Install necessary packages to run CKAN
 RUN apk add --no-cache tzdata \
         git \
@@ -41,14 +39,8 @@ RUN apk add --no-cache tzdata \
     apk add --no-cache --virtual .build-deps \
 #        postgresql-dev \
 #	postgresql-client \
-	--repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-        --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
-        gcc libc-dev geos-dev geos && \
-    	runDeps="$(scanelf --needed --nobanner --recursive /usr/local \
-    	| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
-    	| xargs -r apk info --installed \
-    	| sort -u)" && \
-    	apk add --virtual .rundeps $runDeps \
+        gcc \
+	libc-dev \
         make \
         g++ \
         autoconf \
@@ -78,8 +70,8 @@ RUN virtualenv ${APP_DIR} && \
 RUN echo "@postgres_latest http://dl-cdn.alpinelinux.org/alpine/v3.7/main/" >> /etc/apk/repositories && \
     apk add --update --no-cache postgresql-dev@postgres_latest postgresql-client@postgres_latest
     
-#RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-   # apk add --update --no-cache geos@testing geos-dev@testing py3-geos@testing
+RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+   apk add --update --no-cache geos@testing geos-dev@testing py3-geos@testing
 
 COPY setup/supervisord.conf /etc
 
