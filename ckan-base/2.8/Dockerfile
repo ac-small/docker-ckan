@@ -33,6 +33,7 @@ RUN apk add --no-cache tzdata \
         py2-gevent \
         uwsgi-gevent \
         libmagic \
+	libc-dev \
         curl \
         sudo && \
     # Packages to build CKAN requirements and plugins
@@ -48,7 +49,6 @@ RUN apk add --no-cache tzdata \
         python-dev \
         libxml2-dev \
         libxslt-dev \
-	libc-dev \
         linux-headers && \
     # Create SRC_DIR
     mkdir -p ${SRC_DIR} && \
