@@ -71,7 +71,7 @@ RUN echo "@postgres_latest http://dl-cdn.alpinelinux.org/alpine/v3.7/main/" >> /
     apk add --update --no-cache postgresql-dev@postgres_latest postgresql-client@postgres_latest
     
 RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-   apk add --update --no-cache geos@testing geos-dev@testing py3-geos@testing
+   apk add --update --no-cache geos@testing geos-dev@testing py3-geos@testing py3-shapely@testing
 
 COPY setup/supervisord.conf /etc
 
