@@ -48,7 +48,7 @@ RUN apk add --no-cache tzdata \
     	| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
     	| xargs -r apk info --installed \
     	| sort -u)" && \
-    	apk add --virtual .rundeps $runDeps
+    	apk add --virtual .rundeps $runDeps \
         make \
         g++ \
         autoconf \
