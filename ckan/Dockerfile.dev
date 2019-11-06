@@ -55,8 +55,8 @@ ENV TEST_CKAN_REDIS_URL=${TEST_CKAN_REDIS_URL}
 
 # Set timezone
 ARG TZ
-COPY zoneinfo/$TZ /etc/localtime
-RUN echo $TZ > /etc/timezone
+#COPY zoneinfo/$TZ /etc/localtime
+#RUN echo $TZ > /etc/timezone
 
 RUN chown -R ckan:ckan ${APP_DIR}/*
 
