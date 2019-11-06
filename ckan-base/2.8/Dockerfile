@@ -95,8 +95,8 @@ RUN . ${APP_DIR}/bin/activate && cd ${APP_DIR}/src && \
     paster --plugin=ckan config-tool ${CKAN_INI} "ckan.site_url = ${CKAN_SITE_URL}"
 
 # Create a local user and group to run the app
-RUN addgroup -g 92 -S ckan && \
-    adduser -u 92 -h /srv/app -H -D -S -G ckan ckan
+RUN groupadd -g 92 -S ckan && \
+    useradd -u 92 -h /srv/app -H -D -S -G ckan ckan
 
 # Create local storage folder
 RUN mkdir -p $CKAN_STORAGE_PATH && \
