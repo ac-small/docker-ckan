@@ -49,7 +49,7 @@ RUN apt-get -q -y update \
         python-dev \
         libxml2-dev \
         libxslt1-dev \
-        linux-headers-3.16.0-10-586 && \
+        linux-headers-3.16.0-10-common && \
     # Create SRC_DIR
     mkdir -p ${SRC_DIR} && \
     # Install pip, supervisord and uwsgi
