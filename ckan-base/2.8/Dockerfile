@@ -40,6 +40,7 @@ RUN apt-get -q -y update \
 #       postgresql-dev \
 #       postgresql-client \
         libgeos-dev \
+	libpq-dev \
         gcc \
         make \
         g++ \
