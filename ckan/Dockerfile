@@ -50,8 +50,8 @@ ENV TEST_CKAN_DATASTORE_READ_URL=${TEST_CKAN_DATASTORE_READ_URL}
 
 # Set timezone
 ARG TZ
-#COPY zoneinfo/$TZ /etc/localtime
-#RUN echo $TZ > /etc/timezone
+COPY zoneinfo/$TZ /etc/localtime/
+RUN echo $TZ > /etc/timezone
 
 RUN chown -R ckan:ckan ${APP_DIR}/*
 
