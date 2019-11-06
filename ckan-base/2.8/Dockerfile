@@ -26,7 +26,7 @@ RUN apt-get -q -y update \
         python \
         apache2-utils \
         libxml2 \
-#       libxslt \
+	libpython2.7 \
         musl-dev \
         uwsgi-core \
         uwsgi-plugin-python \
