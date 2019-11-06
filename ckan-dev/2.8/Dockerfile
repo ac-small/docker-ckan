@@ -10,7 +10,8 @@ ENV APP_DIR=/srv/app
 ENV SRC_EXTENSIONS_DIR=/srv/app/src_extensions
 
 # Install packages needed by the dev requirements
-RUN apt-get -q -y install libffi-dev && \
+RUN apt-get -q -y install
+    libffi-dev \
     mc \
     vim
 
