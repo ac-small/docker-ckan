@@ -17,9 +17,9 @@ ENV CKAN__PLUGINS=${CKAN__PLUGINS}
 WORKDIR ${APP_DIR}
 
 # Install necessary packages to run CKAN
-RUN apt-get -q -y update \ &&
-        apt-get -q -y install \
-		tzdata \
+RUN apt-get -q -y update \
+        && apt-get -q -y install \
+	tzdata \
         git \
         gettext \
         postgresql-client \
@@ -34,9 +34,9 @@ RUN apt-get -q -y update \ &&
         uwsgi-plugin-gevent-python\
         libmagic \
         curl \
-        sudo \ &&
+        sudo \
 # Packages to build CKAN requirements and plugins
-        apt-get -q -y install \
+#       apt-get -q -y install \
 #       postgresql-dev \
 #       postgresql-client \
         libgeos-dev \
