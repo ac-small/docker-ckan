@@ -30,7 +30,7 @@ RUN apt-get -q -y update \
         musl-dev \
         uwsgi-core \
         uwsgi-plugin-python \
-        gevent \
+        python-gevent \
 #       uwsgi-plugin-gevent-python\
         libmagic-dev \
         curl \
