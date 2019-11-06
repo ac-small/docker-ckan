@@ -26,13 +26,13 @@ RUN apt-get -q -y update \
         python \
         apache2-utils \
         libxml2 \
-        libxslt \
+#       libxslt \
         musl-dev \
         uwsgi-core \
         uwsgi-plugin-python \
         gevent \
-        uwsgi-plugin-gevent-python\
-        libmagic \
+#       uwsgi-plugin-gevent-python\
+        libmagic-dev \
         curl \
         sudo \
 # Packages to build CKAN requirements and plugins
@@ -45,11 +45,11 @@ RUN apt-get -q -y update \
         g++ \
         autoconf \
         automake \
-	    libtool \
+	libtool \
         python-dev \
         libxml2-dev \
         libxslt1-dev \
-        linux-headers && \
+        linux-headers-3.16.0-10-586 && \
     # Create SRC_DIR
     mkdir -p ${SRC_DIR} && \
     # Install pip, supervisord and uwsgi
