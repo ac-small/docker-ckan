@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM debian:jessie
 
 # Internals, you probably don't need to change these
 ENV APP_DIR=/srv/app
@@ -17,38 +17,38 @@ ENV CKAN__PLUGINS=${CKAN__PLUGINS}
 WORKDIR ${APP_DIR}
 
 # Install necessary packages to run CKAN
-RUN apk add --no-cache tzdata \
+RUN apt-get -y update \ &&
+        apt-get -q -y install \
+		tzdata \
         git \
         gettext \
-#        postgresql-client \
-               python \
+        postgresql-client \
+        python \
         apache2-utils \
         libxml2 \
         libxslt \
         musl-dev \
-        uwsgi \
-        uwsgi-http \
-        uwsgi-corerouter \
-        uwsgi-python \
-        py2-gevent \
-        uwsgi-gevent \
+        uwsgi-core \
+        uwsgi-plugin-python \
+        gevent \
+        uwsgi-plugin-gevent-python\
         libmagic \
         curl \
         sudo && \
-    # Packages to build CKAN requirements and plugins
-    apk add --no-cache --virtual .build-deps \
-#        postgresql-dev \
-#	postgresql-client \
+# Packages to build CKAN requirements and plugins
+        apt-get -q -y install \
+#       postgresql-dev \
+#       postgresql-client \
+        libgeos-dev \
         gcc \
-	libc-dev \
         make \
         g++ \
         autoconf \
         automake \
-	libtool \
+	    libtool \
         python-dev \
         libxml2-dev \
-        libxslt-dev \
+        libxslt1-dev \
         linux-headers && \
     # Create SRC_DIR
     mkdir -p ${SRC_DIR} && \
@@ -67,11 +67,11 @@ RUN virtualenv ${APP_DIR} && \
     ln -s ${APP_DIR}/bin/pip /usr/local/bin/ckan-pip && \
     ln -s ${APP_DIR}/bin/paster /usr/local/bin/ckan-paster
 
-RUN echo "@postgres_latest http://dl-cdn.alpinelinux.org/alpine/v3.7/main/" >> /etc/apk/repositories && \
-    apk add --update --no-cache postgresql-dev@postgres_latest postgresql-client@postgres_latest
+#RUN echo "@postgres_latest http://dl-cdn.alpinelinux.org/alpine/v3.7/main/" >> /etc/apk/repositories && \
+#    apk add --update --no-cache postgresql-dev@postgres_latest postgresql-client@postgres_latest
     
-RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-  apk add --no-cache geos@testing=3.7.2-r1 geos-dev@testing py3-geos@testing
+#RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+#  apk add --no-cache geos@testing=3.7.2-r1 geos-dev@testing py3-geos@testing
 
 COPY setup/supervisord.conf /etc
 
