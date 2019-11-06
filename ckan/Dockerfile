@@ -49,9 +49,10 @@ ENV TEST_CKAN_DATASTORE_READ_URL=${TEST_CKAN_DATASTORE_READ_URL}
 #Install extra system packages needed by registry
 
 # Set timezone
-ARG TZ
-COPY zoneinfo/$TZ /etc/localtime/
-RUN echo $TZ > /etc/timezone
+# Only needed when running Alpine
+#ARG TZ
+#COPY zoneinfo/$TZ /etc/localtime/
+#RUN echo $TZ > /etc/timezone
 
 RUN chown -R ckan:ckan ${APP_DIR}/*
 
