@@ -96,7 +96,7 @@ RUN . ${APP_DIR}/bin/activate && cd ${APP_DIR}/src && \
 
 # Create a local user and group to run the app
 RUN groupadd -g 92 -r ckan && \
-    useradd -u 92 -h /srv/app -M -r -G ckan ckan
+    useradd -u 92 -d /srv/app -M -r -G ckan ckan
 
 # Create local storage folder
 RUN mkdir -p $CKAN_STORAGE_PATH && \
