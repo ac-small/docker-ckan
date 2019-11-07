@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 
 # Internals, you probably don't need to change these
 ENV APP_DIR=/srv/app
@@ -31,7 +31,7 @@ RUN apt-get -q -y update \
         uwsgi-core \
         uwsgi-plugin-python \
         python-gevent \
-#       uwsgi-plugin-gevent-python\
+        uwsgi-plugin-gevent-python\
         libmagic-dev \
         curl \
         sudo \
@@ -49,8 +49,7 @@ RUN apt-get -q -y update \
 	libtool \
         python-dev \
         libxml2-dev \
-        libxslt1-dev \
-        linux-headers-3.16.0-10-common && \
+        libxslt1-dev && \
     # Create SRC_DIR
     mkdir -p ${SRC_DIR} && \
     # Install pip, supervisord and uwsgi
