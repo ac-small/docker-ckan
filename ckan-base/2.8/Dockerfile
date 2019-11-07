@@ -25,6 +25,7 @@ RUN apt-get -q -y update \
         postgresql-client \
         python \
         apache2-utils \
+	libssl-dev \
         libxml2 \
 	libpython2.7 \
         musl-dev \
