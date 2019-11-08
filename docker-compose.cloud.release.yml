@@ -3,7 +3,7 @@ version: "3.7"
 services:
   ckan:
     container_name: ckan
-    image: ckancontainerreg.azurecr.io/ckancontainerreg.azurecr.io/release/ckan:2.8.3.release1
+    image: "ckancontainerreg.azurecr.io/ckancontainerreg.azurecr.io/release/ckan:2.8.3.release${RELEASE_VERSION}"
     logging:
       driver: "json-file"
       options:
