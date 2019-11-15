@@ -114,7 +114,7 @@ RUN for d in $APP_DIR/patches/*; do \
     done
 
 # Overwrite CKAN core middleware with own custom configuration
-COPY ${APP_DIR}/src/ckan/ckanext-aafc/ckan/config/middleware/pylons_app.py ${APP_DIR}/src/ckan/ckan/config/middleware/pylons_app.py
+COPY $APP_DIR/src/ckan/ckanext-aafc/ckan/config/middleware/pylons_app.py $APP_DIR/src/ckan/ckan/config/middleware/pylons_app.py
 
 # RUN chown -R ckan:ckan ${APP_DIR}/*
 
