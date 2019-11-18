@@ -113,9 +113,6 @@ RUN for d in $APP_DIR/patches/*; do \
         fi ; \
     done
 
-# Overwrite CKAN core middleware with own custom configuration
-COPY /srv/app/src/ckan/ckanext-aafc/ckan/config/middleware/pylons_app.py /srv/app/src/ckan/ckan/config/middleware/pylons_app.py
-
 # RUN chown -R ckan:ckan ${APP_DIR}/*
 
 # Prod build fails when user is ckan at the end of this script
