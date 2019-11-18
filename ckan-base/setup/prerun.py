@@ -208,7 +208,7 @@ def create_sysadmin():
         print '[prerun] Made user {0} a sysadmin'.format(name)
 
 def customize_middleware():
-    cmd = 'cp /srv/app/ckan/ckanext-aafc/ckan/config/middleware/pylons_app.py /srv/app/src/ckan/ckan/config/middleware/pylons_app.py'
+    cmd = 'cp /srv/app/src/ckanext-aafc/ckan/config/middleware/pylons_app.py /srv/app/src/ckan/ckan/config/middleware/pylons_app.py'
     results = subprocess.check_call(
            cmd, shell=True, universal_newlines=True)
     print '[prerun]  Copied custom middleware with exit code:' + str(results)
