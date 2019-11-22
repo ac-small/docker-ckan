@@ -24,6 +24,7 @@ ARG CKAN_DATASTORE_READ_URL
 ARG TEST_CKAN_SQLALCHEMY_URL
 ARG TEST_CKAN_DATASTORE_WRITE_URL
 ARG TEST_CKAN_DATASTORE_READ_URL
+ARG SEARCH_FACETS_DEFAULT
 #ARG CKAN__ROOT_PATH
 
 ENV CKAN_SITE_URL=${CKAN_SITE_URL}
@@ -44,6 +45,7 @@ ENV CKAN_DATASTORE_READ_URL=${CKAN_DATASTORE_READ_URL}
 ENV TEST_CKAN_SQLALCHEMY_URL=${TEST_CKAN_SQLALCHEMY_URL}
 ENV TEST_CKAN_DATASTORE_WRITE_URL=${TEST_CKAN_DATASTORE_WRITE_URL}
 ENV TEST_CKAN_DATASTORE_READ_URL=${TEST_CKAN_DATASTORE_READ_URL}
+ENV SEARCH_FACETS_DEFAULT=${SEARCH_FACETS_DEFAULT}
 #ENV CKAN__ROOT_PATH=${CKAN__ROOT_PATH}
 
 #Install extra system packages needed by registry
@@ -95,7 +97,7 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     paster --plugin=ckan config-tool $CKAN_INI "licenses_group_url=$CKAN___LICENSES_GROUP_URL" && \
     paster --plugin=ckan config-tool $CKAN_INI "ckan.views.default_views=$CKAN__VIEWS__DEFAULT_VIEWS" && \
     paster --plugin=ckan config-tool $CKAN_INI "ckanext.geoview.ol_viewer.formats=$CKAN___CKANEXT__GEOVIEW__OL_VIEWER__FORMATS" && \
-	paster --plugin=ckan config-tool $CKAN_INI "search.facets.default = $SEARCH_FACETS_DEFAULT"
+    paster --plugin=ckan config-tool $CKAN_INI "search.facets.default=$SEARCH_FACETS_DEFAULT"
 #    paster --plugin=ckan config-tool $CKAN_INI "ckan.root_path=$CKAN__ROOT_PATH"
 
 # Install the extension(s) you wrote for your own project
