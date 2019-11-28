@@ -32,6 +32,22 @@ def init_organizations():
            cmd, shell=True, universal_newlines=True)
     print '[prerun] Organizations Initialized with Exit Code: ' + str(results)
     
+def init_groups():
+    url_is_set = os.environ.get('CKAN_SITE_URL')
+    if not url_is_set:
+        print '[prerun] CKAN_SITE_URL not defined skipping group initialization'
+        return
+    cmd = 'mkdir -p ${APP_DIR}/temp && \
+           cd  ${APP_DIR}/temp && \
+           curl https://raw.githubusercontent.com/aafc-ckan/ckanext-aafc/master/imports/default_groups.json.gz > ${APP_DIR}/temp/default_group_data.json.gz && \
+           gunzip default_group_data.json.gz && \
+           . $APP_DIR/bin/activate && cd $APP_DIR/temp && \
+           ckanapi load groups -I default_group_data.json -c /${APP_DIR}/production.ini && \
+           rm -rf ${APP_DIR}/temp'
+    results = subprocess.check_call(
+           cmd, shell=True, universal_newlines=True)
+    print '[prerun] Groups Initialized with Exit Code: ' + str(results)
+    
 def rebuild_index():
     command = ['paster', '--plugin=ckan', 'search-index', 'rebuild', '-c', ckan_ini]
     subprocess.call(command)
@@ -230,3 +246,4 @@ if __name__ == '__main__':
         customize_middleware()
         rebuild_index()
         init_organizations()
+        init_groups()
