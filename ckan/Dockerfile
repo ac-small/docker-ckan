@@ -98,6 +98,7 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     paster --plugin=ckan config-tool $CKAN_INI "ckan.views.default_views=$CKAN__VIEWS__DEFAULT_VIEWS" && \
     paster --plugin=ckan config-tool $CKAN_INI "ckanext.geoview.ol_viewer.formats=$CKAN___CKANEXT__GEOVIEW__OL_VIEWER__FORMATS" && \
     paster --plugin=ckan config-tool $CKAN_INI "search.facets.default = 5"
+	paster --plugin=ckan config-tool $CKAN_INI "release.aafc.registry = 0.1"
 #    paster --plugin=ckan config-tool $CKAN_INI "ckan.root_path=$CKAN__ROOT_PATH"
 
 # Install the extension(s) you wrote for your own project
