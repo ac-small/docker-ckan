@@ -6,7 +6,7 @@ MAINTAINER John Kolesar
 ENV APP_DIR=/srv/app
 
 # Build time arguements to allow docker-compose to pass in values
-ARG CKAN_SITE_URL
+ARG CKAN__SITE_URL
 ARG CKAN__PLUGINS
 ARG CKAN__LOCALE_ORDER
 ARG CKAN__LOCALES_OFFERED
@@ -28,7 +28,7 @@ ARG CKAN___SEARCH__FACETS__DEFAULT
 ARG CKAN___REGISTRY__RELEASE__VERSION
 #ARG CKAN__ROOT_PATH
 
-ENV CKAN_SITE_URL=${CKAN_SITE_URL}
+ENV CKAN__SITE_URL=${CKAN__SITE_URL}
 ENV CKAN__PLUGINS=${CKAN__PLUGINS}
 ENV CKAN__LOCALE_ORDER=${CKAN__LOCALE_ORDER}
 ENV CKAN__LOCALES_OFFERED=${CKAN__LOCALES_OFFERED}
@@ -88,7 +88,7 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
 
 # Update CKAN config with AAFC registry values (Should all be set in the .env file)
 RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
-    paster --plugin=ckan config-tool $CKAN_INI "ckan.site_url=$CKAN_SITE_URL" && \
+    paster --plugin=ckan config-tool $CKAN_INI "ckan.site_url=$CKAN__SITE_URL" && \
     paster --plugin=ckan config-tool $CKAN_INI "ckan.plugins=$CKAN__PLUGINS" && \
     paster --plugin=ckan config-tool $CKAN_INI "ckan.locale_order=$CKAN__LOCALE_ORDER" && \
     paster --plugin=ckan config-tool $CKAN_INI "ckan.locales_offered=$CKAN__LOCALES_OFFERED" && \
