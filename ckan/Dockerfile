@@ -87,14 +87,14 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
 # to get them mounted in this image at runtime
 
 # Update CKAN config with AAFC registry values (Should all be set in the .env file)
-RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
+RUN . $APP_DIR/bin/activate && cd $APP_DIR/src
     #paster --plugin=ckan config-tool $CKAN_INI "ckan.site_url=$CKAN_SITE_URL" && \
     #paster --plugin=ckan config-tool $CKAN_INI "ckan.plugins=$CKAN__PLUGINS" && \
     #paster --plugin=ckan config-tool $CKAN_INI "ckan.locale_order=$CKAN__LOCALE_ORDER" && \
     #paster --plugin=ckan config-tool $CKAN_INI "ckan.locales_offered=$CKAN__LOCALES_OFFERED" && \
     #paster --plugin=ckan config-tool $CKAN_INI "scheming.dataset_schemas=$CKAN___SCHEMING__DATASET_SCHEMAS" && \
     #paster --plugin=ckan config-tool $CKAN_INI "scheming.presets=$CKAN___SCHEMING__PRESETS" && \
-    paster --plugin=ckan config-tool $CKAN_INI "scheming.dataset_fallback=false"
+    #paster --plugin=ckan config-tool $CKAN_INI "scheming.dataset_fallback=false"
     #paster --plugin=ckan config-tool $CKAN_INI "ckan.search.show_all_types=$CKAN__SEARCH__SHOW_ALL_TYPES" && \
     #paster --plugin=ckan config-tool $CKAN_INI "licenses_group_url=$CKAN___LICENSES_GROUP_URL" && \
     #paster --plugin=ckan config-tool $CKAN_INI "ckan.views.default_views=$CKAN__VIEWS__DEFAULT_VIEWS" && \
