@@ -54,7 +54,8 @@ echo "Enabling debug mode"
 # Update the plugins setting in the ini file with the values defined in the env var
 echo "Loading the following plugins: $CKAN__PLUGINS"
 . $APP_DIR/bin/activate && cd $APP_DIR/src && \
-paster --plugin=ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS"
+paster --plugin=ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS" \ 
+    "ckan.site_url = $CKAN_SITE_URL"
 
 # Update test-core.ini DB, SOLR & Redis settings
 echo "Loading test settings into test-core.ini"
