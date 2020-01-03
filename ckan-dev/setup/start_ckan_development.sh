@@ -67,7 +67,18 @@ paster --plugin=ckan config-tool $CKAN_INI "licenses_group_url=$CKAN___LICENSES_
 paster --plugin=ckan config-tool $CKAN_INI "ckan.views.default_views=$CKAN__VIEWS__DEFAULT_VIEWS" && \
 paster --plugin=ckan config-tool $CKAN_INI "ckanext.geoview.ol_viewer.formats=$CKAN___CKANEXT__GEOVIEW__OL_VIEWER__FORMATS" && \
 paster --plugin=ckan config-tool $CKAN_INI "search.facets.default = $CKAN___SEARCH__FACETS__DEFAULT" && \
-paster --plugin=ckan config-tool $CKAN_INI "release.aafc.registry = $CKAN___REGISTRY__RELEASE__VERSION"
+paster --plugin=ckan config-tool $CKAN_INI "release.aafc.registry = $CKAN___REGISTRY__RELEASE__VERSION" && \
+paster --plugin=ckan config-tool $CKAN_INI "ckan.storage_server = $CKAN__STORAGE_PATH" && \
+paster --plugin=ckan config-tool $CKAN_INI "ckan.activity_streams_email_notifications = $CKAN_EMAIL_NOTIFICATIONS" && \
+paster --plugin=ckan config-tool $CKAN_INI "smtp.server = $CKAN_SMTP_SERVER" && \
+paster --plugin=ckan config-tool $CKAN_INI "smtp.starttls = $CKAN_SMTP_STARTTLS" && \
+paster --plugin=ckan config-tool $CKAN_INI "smtp.user = $CKAN_SMTP_USER" && \
+paster --plugin=ckan config-tool $CKAN_INI "smtp.password = $CKAN_SMTP_PASSWORD" && \
+paster --plugin=ckan config-tool $CKAN_INI "smtp.mail_from = $CKAN_SMTP_MAIL_FROM" && \
+paster --plugin=ckan config tool $CKAN_INI "ckan.redis.url = $CKAN_REDIS_URL" && \
+paster --plugin=ckan config tool $CKAN_INI "ckan.solr_url = $CKAN_SOLR_URL" && \
+paster --plugin=ckan config tool $CKAN_INI "ckan.datapusher.url = $CKAN_DATAPUSHER_URL"
+
 
 # Update test-core.ini DB, SOLR & Redis settings
 echo "Loading test settings into test-core.ini"
