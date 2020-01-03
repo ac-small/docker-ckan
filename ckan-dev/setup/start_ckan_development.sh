@@ -75,9 +75,9 @@ paster --plugin=ckan config-tool $CKAN_INI "smtp.starttls = $CKAN_SMTP_STARTTLS"
 paster --plugin=ckan config-tool $CKAN_INI "smtp.user = $CKAN_SMTP_USER" && \
 paster --plugin=ckan config-tool $CKAN_INI "smtp.password = $CKAN_SMTP_PASSWORD" && \
 paster --plugin=ckan config-tool $CKAN_INI "smtp.mail_from = $CKAN_SMTP_MAIL_FROM" && \
-paster --plugin=ckan config tool $CKAN_INI "ckan.redis.url = $CKAN_REDIS_URL" && \
-paster --plugin=ckan config tool $CKAN_INI "ckan.solr_url = $CKAN_SOLR_URL" && \
-paster --plugin=ckan config tool $CKAN_INI "ckan.datapusher.url = $CKAN_DATAPUSHER_URL"
+paster --plugin=ckan config-tool $CKAN_INI "ckan.redis.url = $CKAN_REDIS_URL" && \
+paster --plugin=ckan config-tool $CKAN_INI "ckan.solr_url = $CKAN_SOLR_URL" && \
+paster --plugin=ckan config-tool $CKAN_INI "ckan.datapusher.url = $CKAN_DATAPUSHER_URL"
 
 
 # Update test-core.ini DB, SOLR & Redis settings
