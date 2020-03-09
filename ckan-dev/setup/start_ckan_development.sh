@@ -77,7 +77,13 @@ paster --plugin=ckan config-tool $CKAN_INI "smtp.password = $CKAN_SMTP_PASSWORD"
 paster --plugin=ckan config-tool $CKAN_INI "smtp.mail_from = $CKAN_SMTP_MAIL_FROM" && \
 paster --plugin=ckan config-tool $CKAN_INI "ckan.redis.url = $CKAN_REDIS_URL" && \
 paster --plugin=ckan config-tool $CKAN_INI "ckan.solr_url = $CKAN_SOLR_URL" && \
-paster --plugin=ckan config-tool $CKAN_INI "ckan.datapusher.url = $CKAN_DATAPUSHER_URL"
+paster --plugin=ckan config-tool $CKAN_INI "ckan.datapusher.url = $CKAN_DATAPUSHER_URL" && \
+paster --plugin=ckan config-tool $CKAN_INI "who.timeout = $CKAN__WHO_TIMEOUT" && \
+paster --plugin=ckan config-tool $CKAN_INI "who.httponly = $CKAN__WHO_HTTPONLY" && \
+paster --plugin=ckan config-tool $CKAN_INI "who.secure = $CKAN__WHO_SECURE" && \
+paster --plugin=ckan config-tool $CKAN_INI "ckan.tracking_enabled = $CKAN__TRACKING_ENABLED" && \
+paster --plugin=ckan config-tool $CKAN_INI "ckan.cors.origin_allow_all = $CKAN__CORS_ORIGIN_ALLOW_ALL" && \
+paster --plugin=ckan config-tool $CKAN_INI "ckan.cors.origin_whitelist = $CKAN__CORS_ORIGIN_WHITELIST"
 
 
 # Update test-core.ini DB, SOLR & Redis settings
