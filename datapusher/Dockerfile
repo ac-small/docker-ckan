@@ -1,6 +1,6 @@
-FROM keitaro/base:0.4
+FROM alpine:3:10
 
-MAINTAINER Keitaro Inc <info@keitaro.info>
+MAINTAINER Alexis S.
 
 ENV APP_DIR=/srv/app
 ENV GIT_BRANCH 0.0.14
