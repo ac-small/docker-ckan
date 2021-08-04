@@ -11,6 +11,7 @@ services:
          max-file: "10"
     environment:
       - CKAN_SITE_URL=${CKAN_SITE_URL}
+      - CKAN_SITE_TITLE=${CKAN_SITE_TITLE}
       - CKAN__LOCALE_ORDER=${CKAN__LOCALE_ORDER}
       - CKAN__STORAGE_PATH=${CKAN__STORAGE_PATH}
       - CKAN__LOCALES_OFFERED=${CKAN__LOCALES_OFFERED}

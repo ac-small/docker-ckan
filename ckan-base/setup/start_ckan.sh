@@ -5,6 +5,7 @@ echo "Loading the following plugins: $CKAN__PLUGINS"
 . $APP_DIR/bin/activate && cd $APP_DIR/src && \	
 	paster --plugin=ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS" && \
 	paster --plugin=ckan config-tool $CKAN_INI "ckan.site_url=$CKAN_SITE_URL" && \
+	paster --plugin=ckan config-tool $CKAN_INI "ckan.site_title=$CKAN_SITE_TITLE" && \
 	paster --plugin=ckan config-tool $CKAN_INI "ckan.locale_order=$CKAN__LOCALE_ORDER" && \
 	paster --plugin=ckan config-tool $CKAN_INI "ckan.locales_offered=$CKAN__LOCALES_OFFERED" && \
 	paster --plugin=ckan config-tool $CKAN_INI "scheming.dataset_schemas=$CKAN___SCHEMING__DATASET_SCHEMAS" && \
