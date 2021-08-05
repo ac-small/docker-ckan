@@ -23,11 +23,15 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     pip install geojson && \
     pip install geomet
 	
+USER root
+
 # Add text editor
 RUN apt-get -q -y install \
     mc \
     vim \
     cron
+	
+USER ckan
 
 RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     pip install -e "git+https://github.com/aafc-ckan/ckanext-scheming.git#egg=ckanext-scheming" && \
