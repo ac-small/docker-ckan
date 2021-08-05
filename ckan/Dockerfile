@@ -1,7 +1,7 @@
 # If building all from local environment change to 
 #FROM ckan-base:2.8
 FROM ckancontainerreg.azurecr.io/base/ckan-base:2.8.3
-MAINTAINER John Kolesar
+MAINTAINER Alexis S.
 
 ENV APP_DIR=/srv/app
 
@@ -24,7 +24,8 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
 # Add text editor
 RUN apt-get -q -y install \
     mc \
-    vim
+    vim \
+    cron
 
 RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     pip install -e "git+https://github.com/aafc-ckan/ckanext-scheming.git#egg=ckanext-scheming" && \
