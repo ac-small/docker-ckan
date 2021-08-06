@@ -55,7 +55,7 @@ RUN apt-get -q -y update \
     mkdir -p ${SRC_DIR} && \
     # Install pip, supervisord and uwsgi
     curl -o ${SRC_DIR}/get-pip.py https://bootstrap.pypa.io/pip/2.7/get-pip.py && \
-    python ${SRC_DIR}/get-pip.py && \
+    python ${SRC_DIR}/get-pip.py 'pip==20.3.3' && \
     pip install pastescript && \
     pip install pastedeploy && \
     pip install supervisor && \
