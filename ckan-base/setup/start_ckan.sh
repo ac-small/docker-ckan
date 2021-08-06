@@ -37,9 +37,6 @@ echo "Loading the following plugins: $CKAN__PLUGINS"
 # Run the prerun script to init CKAN and create the default admin user
 . $APP_DIR/bin/activate && cd $APP_DIR && \
     python prerun.py
-	
-#Install hourly crontab to send emails
-crontab -l | { cat; echo "@hourly echo '{}' | paster --plugin=ckan post -c /srv/app/production.ini /api/action/send_email_notifications > /dev/null"; } | crontab -
 
 # Run any startup scripts provided by images extending this one
 if [[ -d "/docker-entrypoint.d" ]]
