@@ -19,7 +19,8 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     pip install PyYAML && \
     pip install ckanapi && \
     pip install geojson && \
-    pip install geomet
+    pip install geomet && \
+    pip install ckanapi-exporter
 
 # Add text editor
 RUN apt-get -q -y install \

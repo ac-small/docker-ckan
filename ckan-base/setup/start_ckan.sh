@@ -52,7 +52,7 @@ then
 fi
 
 # Set the common uwsgi options
-UWSGI_OPTS="--socket /tmp/uwsgi.sock --uid 92 --gid 92 --http :5000 --master --enable-threads --paste config:/srv/app/production.ini --paste-logger --lazy-apps -p 2 -L -b 32768"
+UWSGI_OPTS="--plugins http,python,gevent_python --socket /tmp/uwsgi.sock --uid 92 --gid 92 --http :5000 --master --enable-threads --pyhome /srv/app --paste config:/srv/app/production.ini --paste-logger --lazy-apps --gevent 2000 -p 2 -L -b 32768"
 
 if [ $? -eq 0 ]
 then
