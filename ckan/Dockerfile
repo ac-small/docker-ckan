@@ -35,6 +35,7 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     pip install -e git+https://github.com/ckan/ckanext-spatial.git#egg=ckanext-spatial && \
     pip install -r https://raw.githubusercontent.com/ckan/ckanext-geoview/master/pip-requirements.txt && \
     pip install -e git+https://github.com/ckan/ckanext-geoview.git#egg=ckanext-geoview && \
+    pip install -e git+https://github.com/ckan/ckanext-pdfview.git#egg=ckanext-pdfview && \
     pip install -e git+https://github.com/aafc-ckan/ckanext-aafc.git#egg=ckanext-aafc && \
     pip install -e git+https://github.com/aafc-ckan/ckanext-aafcesas.git#egg=ckanext-aafcesas
 # Clone the extension(s) your are writing for your own project in the `src` folder
