@@ -101,6 +101,9 @@ paster --plugin=ckan config-tool $SRC_DIR/ckan/test-core.ini \
 . $APP_DIR/bin/activate && cd $APP_DIR && \
     python prerun.py
 
+# Set up crontab to collect tracking information hourly
+echo  "@hourly paster --plugin=ckan tracking update -c $APP_DIR/production.ini" | crontab -
+
 # Run any startup scripts provided by images extending this one
 if [[ -d "/docker-entrypoint.d" ]]
 then
