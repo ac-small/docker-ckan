@@ -102,7 +102,9 @@ paster --plugin=ckan config-tool $SRC_DIR/ckan/test-core.ini \
     python prerun.py
 
 # Set up crontab to collect tracking information hourly
-echo  "@hourly paster --plugin=ckan tracking update -c $APP_DIR/production.ini" | crontab -
+# Note: "hourly_tasks.sh" refers to an executable script within the ckanext-aafc
+#        extension located under the contrib/etl folder. 
+echo  "@hourly source /srv/app/src/ckanext-aafc/contrib/etl/hourly_tasks.sh" | crontab -
 
 # Run any startup scripts provided by images extending this one
 if [[ -d "/docker-entrypoint.d" ]]
