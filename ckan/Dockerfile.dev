@@ -5,11 +5,8 @@ FROM ckancontainerreg.azurecr.io/base/ckan-dev:2.8.3
 MAINTAINER Alexis S.
 
 ENV APP_DIR=/srv/app
-ENV CKAN_STORAGE_PATH=/var/lib/ckan
 
 RUN chown -R ckan:ckan ${APP_DIR}/*
-
-USER ckan
 
 # Install any extensions needed by your CKAN instance
 # (Make sure to add the plugins to CKAN__PLUGINS in the .env file)
@@ -23,16 +20,12 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     pip install geojson && \
     pip install geomet && \
     pip install ckanapi-exporter
-	
-USER root
 
 # Add text editor
 RUN apt-get -q -y install \
     mc \
     vim \
     cron
-	
-USER ckan
 
 RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     pip install -e "git+https://github.com/aafc-ckan/ckanext-scheming.git#egg=ckanext-scheming" && \
@@ -46,24 +39,6 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     pip install -e git+https://github.com/aafc-ckan/ckanext-aafcesas.git#egg=ckanext-aafcesas
 # Clone the extension(s) your are writing for your own project in the `src` folder
 # to get them mounted in this image at runtime
-
-# Load default organizations and images
-# Unzip org images and copy into storage
-#RUN mkdir -p ${CKAN_STORAGE_PATH}/storage/uploads/groups
-
-#RUN cd ${CKAN_STORAGE_PATH}/storage/uploads/groups && \
-#    curl https://raw.githubusercontent.com/aafc-ckan/ckanext-aafc/master/imports/group-photos.tar.gz > ${CKAN_STORAGE_PATH}/storage/uploads/groups/group-photos.tar.gz && \
-#    tar -xzvf group-photos.tar.gz && \
-#    rm group-photos.tar.gz
-
-# Unzip organization json and load into ckan
-#RUN mkdir -p ${APP_DIR}/temp && \
-#    cd  ${APP_DIR}/temp && \
-#    curl https://raw.githubusercontent.com/aafc-ckan/ckanext-aafc/master/imports/org_data.json.gz > ${APP_DIR}/temp/org_data.json.gz && \
-#    gunzip org_data.json.gz && \
-#    . $APP_DIR/bin/activate && cd $APP_DIR/temp && \
-#    ckanapi load organizations -I org_data.json -c /${APP_DIR}/production.ini && \
-#    rm -rf ${APP_DIR}/temp
 
 # Apply any patches needed to CKAN core or any of the built extensions (not the
 # runtime mounted ones)
