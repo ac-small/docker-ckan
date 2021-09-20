@@ -41,7 +41,9 @@ echo "Loading the following plugins: $CKAN__PLUGINS"
 # Set up crontab to collect tracking information hourly
 # Note: "hourly_tasks.sh" refers to an executable script within the ckanext-aafc
 #        extension located under the contrib/etl folder. 
-echo  "@hourly source /srv/app/src/ckanext-aafc/contrib/etl/hourly_tasks.sh" | crontab -
+sudo service cron start
+sudo chmod +x /srv/app/src/ckanext-aafc/contrib/etl/hourly_tasks.sh
+echo  "0 * * * * . /srv/app/src/ckanext-aafc/contrib/etl/hourly_tasks.sh" | crontab -
 
 # Run any startup scripts provided by images extending this one
 if [[ -d "/docker-entrypoint.d" ]]
