@@ -104,8 +104,8 @@ paster --plugin=ckan config-tool $SRC_DIR/ckan/test-core.ini \
 # Set up crontab to collect tracking information hourly
 # Note: "hourly_tasks.sh" refers to an executable script within the ckanext-aafc
 #        extension located under the contrib/etl folder. 
-sudo service cron start
-sudo chmod +x /srv/app/src/ckanext-aafc/contrib/etl/hourly_tasks.sh
+service cron start
+chmod +x /srv/app/src/ckanext-aafc/contrib/etl/hourly_tasks.sh
 echo  "0 * * * * . /srv/app/src/ckanext-aafc/contrib/etl/hourly_tasks.sh" | crontab -
 
 # Run any startup scripts provided by images extending this one
