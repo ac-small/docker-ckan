@@ -4,7 +4,7 @@
 # From ckan-base:2.8
 FROM ckancontainerreg.azurecr.io/base/ckan-base:2.8.3
 
-MAINTAINER John Kolesar
+MAINTAINER Alexis Small
 
 ENV APP_DIR=/srv/app
 ENV SRC_EXTENSIONS_DIR=/srv/app/src_extensions
@@ -23,5 +23,7 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
 RUN mkdir $SRC_EXTENSIONS_DIR
 
 COPY setup/start_ckan_development.sh ${APP_DIR}
+
+USER root
 
 CMD ["/srv/app/start_ckan_development.sh"]

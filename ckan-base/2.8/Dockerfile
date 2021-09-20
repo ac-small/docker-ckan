@@ -120,5 +120,7 @@ EXPOSE 5000
 
 HEALTHCHECK --interval=10s --timeout=5s --retries=5 CMD curl --fail http://localhost:5000/api/3/action/status_show || exit 1
 
+USER root
+
 CMD ["/srv/app/start_ckan.sh"]
 
