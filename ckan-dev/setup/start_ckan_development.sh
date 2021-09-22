@@ -106,7 +106,13 @@ paster --plugin=ckan config-tool $SRC_DIR/ckan/test-core.ini \
 #        extension located under the contrib/etl folder. 
 service cron start
 chmod +x /srv/app/src/ckanext-aafc/contrib/etl/hourly_tasks.sh
-echo  "0 * * * * . /srv/app/src/ckanext-aafc/contrib/etl/hourly_tasks.sh" | crontab -
+echo "CKAN_SQLALCHEMY_URL=$CKAN_SQLALCHEMY_URL
+CKAN_DATASTORE_READ_URL=$CKAN_DATASTORE_READ_URL
+CKAN_DATASTORE_WRITE_URL=$CKAN_DATASTORE_WRITE_URL
+CKAN_SOLR_URL=$CKAN_SOLR_URL
+0 * * * * /srv/app/src/ckanext-aafc/contrib/etl/hourly_tasks.sh" >> temp_cron.txt
+cat temp_cron.txt | crontab -
+rm temp_cron.txt
 
 # Run any startup scripts provided by images extending this one
 if [[ -d "/docker-entrypoint.d" ]]
