@@ -84,7 +84,8 @@ paster --plugin=ckan config-tool $CKAN_INI "who.httponly = $CKAN__WHO_HTTPONLY" 
 paster --plugin=ckan config-tool $CKAN_INI "who.secure = $CKAN__WHO_SECURE" && \
 paster --plugin=ckan config-tool $CKAN_INI "ckan.tracking_enabled = $CKAN__TRACKING_ENABLED" && \
 paster --plugin=ckan config-tool $CKAN_INI "ckan.cors.origin_allow_all = $CKAN__CORS_ORIGIN_ALLOW_ALL" && \
-paster --plugin=ckan config-tool $CKAN_INI "ckan.cors.origin_whitelist = $CKAN__CORS_ORIGIN_WHITELIST"
+paster --plugin=ckan config-tool $CKAN_INI "ckan.cors.origin_whitelist = $CKAN__CORS_ORIGIN_WHITELIST" && \
+paster --plugin=ckan config-tool $CKAN_INI "ckan.valid_url_schemes = $CKAN__VALID_URL_SCHEMES"
 
 
 # Update test-core.ini DB, SOLR & Redis settings
