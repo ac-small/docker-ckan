@@ -5,9 +5,6 @@ MAINTAINER Open Knowledge
 ENV SOLR_CORE ckan
 ENV CKAN_VERSION dev-v2.8
 
-# User
-USER root
-
 # Create Directories
 RUN mkdir -p /opt/solr/server/solr/$SOLR_CORE/conf
 RUN mkdir -p /opt/solr/server/solr/$SOLR_CORE/data
@@ -26,6 +23,7 @@ https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.6/
 RUN echo name=$SOLR_CORE > /opt/solr/server/solr/$SOLR_CORE/core.properties
 
 # Giving ownership to Solr
+USER root
 RUN chown -R $SOLR_USER:$SOLR_USER /opt/solr/server/solr/$SOLR_CORE
 
 # User
