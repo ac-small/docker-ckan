@@ -27,4 +27,4 @@ USER root
 RUN chown -R $SOLR_USER:$SOLR_USER /opt/solr/server/solr/$SOLR_CORE
 
 # User
-USER $SOLR_USER:$SOLR_USER
+# USER $SOLR_USER:$SOLR_USER

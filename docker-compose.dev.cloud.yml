@@ -81,6 +81,7 @@ services:
   solr:
     container_name: solr
     image: ckancontainerreg.azurecr.io/dev/solr:latest
+    command: -force
     logging:
       driver: "json-file"
       options:
