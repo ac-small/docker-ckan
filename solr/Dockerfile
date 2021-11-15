@@ -1,9 +1,8 @@
-FROM solr:7.7.3
+FROM solr:8.4.1
 MAINTAINER Open Knowledge
 
 # Enviroment
 ENV SOLR_CORE ckan
-ENV CKAN_VERSION 2.8
 
 # Create Directories
 RUN mkdir -p /opt/solr/server/solr/$SOLR_CORE/conf
