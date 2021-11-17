@@ -158,6 +158,11 @@ schema. In this case the version should be set to the next CKAN version number.
     <dynamicField name="res_extras_*" type="text" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="vocab_*" type="string" indexed="true" stored="true" multiValued="true"/>
     <dynamicField name="*" type="string" indexed="true"  stored="false"/>
+ 
+     <!-- Extra AAFC fields -->
+    <field name="subject" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="data_steward_email" type="textgen" indexed="true" multiValued="true"/>
+
 </fields>
 
 <uniqueKey>index_id</uniqueKey>
