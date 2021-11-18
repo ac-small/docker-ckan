@@ -20,7 +20,8 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     pip install ckanapi && \
     pip install geojson && \
     pip install geomet && \
-    pip install ckanapi-exporter
+    pip install ckanapi-exporter && \
+    pip install unidecode
 
 # Add text editor
 RUN apt-get -q -y install \
