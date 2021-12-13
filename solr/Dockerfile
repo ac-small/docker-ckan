@@ -1,4 +1,4 @@
-FROM solr:8.11.1
+FROM solr:7.7.3
 MAINTAINER Open Knowledge
 
 # Enviroment
