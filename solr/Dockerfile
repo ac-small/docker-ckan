@@ -19,6 +19,7 @@ https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/7.7.3/
 /opt/solr/server/solr/$SOLR_CORE/conf/
 
 RUN cd /opt/solr/server/lib/ext
+RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install liblog4j2-java
 
 # Create Core.properties
