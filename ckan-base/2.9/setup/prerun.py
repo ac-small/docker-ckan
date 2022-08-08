@@ -33,7 +33,7 @@ def init_organizations():
 
 
 def rebuild_index():
-    command = ["ckan", "-c", ckan_ini "search-index", "rebuild"]
+    command = ["ckan", "-c", ckan_ini, "search-index", "rebuild"]
     subprocess.call(command)
     print ("[prerun] Rebuilt search index")
 
