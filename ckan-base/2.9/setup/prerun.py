@@ -32,6 +32,11 @@ def init_organizations():
     print ("[prerun] Organizations Initialized with Exit Code: " + str(results))
 
 
+def rebuild_index():
+    command = ["ckan", "-c", ckan_ini "search-index", "rebuild"]
+    subprocess.call(command)
+    print ("[prerun] Rebuilt search index")
+
 def update_plugins():
 
     plugins = os.environ.get("CKAN__PLUGINS", "")
@@ -216,4 +221,5 @@ if __name__ == "__main__":
         init_datastore_db()
         check_solr_connection()
         create_sysadmin()
+        rebuild_index()
         init_organizations()
