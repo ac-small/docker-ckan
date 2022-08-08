@@ -6,13 +6,53 @@ services:
     container_name: ckan
     build:
       context: ckan/
-    dockerfile: Dockerfile
-    args:
-      - TZ=${TZ}
+      dockerfile: Dockerfile
     env_file:
       - .env
+    environment:
+      - CKAN_SITE_URL=${CKAN_SITE_URL}
+      - CKAN_SITE_TITLE=${CKAN_SITE_TITLE}
+      - CKAN__LOCALE_ORDER=${CKAN__LOCALE_ORDER}
+      - CKAN__STORAGE_PATH=${CKAN__STORAGE_PATH}
+      - CKAN__LOCALES_OFFERED=${CKAN__LOCALES_OFFERED}
+      - CKAN___SCHEMING__DATASET_SCHEMAS=${CKAN___SCHEMING__DATASET_SCHEMAS}
+      - CKAN___SCHEMING__PRESETS=${CKAN___SCHEMING__PRESETS}
+      - CKAN__SEARCH__SHOW_ALL_TYPES=${CKAN__SEARCH__SHOW_ALL_TYPES}
+      - CKAN___LICENSES_GROUP_URL=${CKAN___LICENSES_GROUP_URL}
+      - CKAN__VIEWS__DEFAULT_VIEWS=${CKAN__VIEWS__DEFAULT_VIEWS}
+      - CKAN___CKANEXT__GEOVIEW__OL_VIEWER__FORMATS=${CKAN___CKANEXT__GEOVIEW__OL_VIEWER__FORMATS}
+      - CKAN__PLUGINS=${CKAN__PLUGINS}
+      - CKAN___SEARCH__FACETS__DEFAULT=${CKAN___SEARCH__FACETS__DEFAULT}
+      - CKAN___SCHEMING__DATASET_FALLBACK=${CKAN___SCHEMING__DATASET_FALLBACK}
+      - CKAN_SMTP_SERVER=${CKAN_SMTP_SERVER}
+      - CKAN_SMTP_STARTTLS=${CKAN_SMTP_STARTTLS}
+      - CKAN_SMTP_USER=${CKAN_SMTP_USER}
+      - CKAN_SMTP_PASSWORD=${CKAN_SMTP_PASSWORD}
+      - CKAN_SMTP_MAIL_FROM=${CKAN_SMTP_MAIL_FROM}
+      - CKAN_EMAIL_NOTIFICATIONS=${CKAN_EMAIL_NOTIFICATIONS}
+      - CKAN___REGISTRY__RELEASE__VERSION=${CKAN___REGISTRY__RELEASE__VERSION}
+      - CKAN__WHO_TIMEOUT=${CKAN__WHO_TIMEOUT}
+      - CKAN__WHO_SECURE=${CKAN__WHO_SECURE}
+      - CKAN__WHO_HTTPONLY=${CKAN__WHO_HTTPONLY}
+      - CKAN__TRACKING_ENABLED=${CKAN__TRACKING_ENABLED}
+      - CKAN__CORS_ORIGIN_ALLOW_ALL=${CKAN__CORS_ORIGIN_ALLOW_ALL}
+      - CKAN__CORS_ORIGIN_WHITELIST=${CKAN__CORS_ORIGIN_WHITELIST}
+      - CKAN__VALID_URL_SCHEMES=${CKAN__VALID_URL_SCHEMES}
+      - CKAN_SOLR_URL=${CKAN_SOLR_URL}
+      - CKAN_REDIS_URL=${CKAN_REDIS_URL}
+      - CKAN_DATAPUSHER_URL=${CKAN_DATAPUSHER_URL}
+      - POSTGRESQL_SERVICE=${POSTGRESQL_SERVICE}
+      - CKAN_SQLALCHEMY_URL=postgresql://${POSTGRES_USER}%40${POSTGRESQL_SERVICE}:${POSTGRES_PASSWORD}@${POSTGRESQL_SERVICE}.${POSTGRESQL_SERVICE_DOMAIN}:5432/${DATABASE_ENV}ckan?sslmode=require
+      - CKAN_DATASTORE_WRITE_URL=postgresql://${POSTGRES_USER}%40${POSTGRESQL_SERVICE}:${POSTGRES_PASSWORD}@${POSTGRESQL_SERVICE}.${POSTGRESQL_SERVICE_DOMAIN}:5432/${DATABASE_ENV}datastore?sslmode=require
+      - CKAN_DATASTORE_READ_URL=postgresql://${DATASTORE_USER}%40${POSTGRESQL_SERVICE}:${DS_RO_PASS}@${POSTGRESQL_SERVICE}.${POSTGRESQL_SERVICE_DOMAIN}:5432/${DATABASE_ENV}datastore?sslmode=require
+      - TEST_CKAN_SQLALCHEMY_URL=postgresql://${POSTGRES_USER}%40${POSTGRESQL_SERVICE}:${POSTGRES_PASSWORD}@${POSTGRESQL_SERVICE}.${POSTGRESQL_SERVICE_DOMAIN}:5432/${DATABASE_ENV}ckan_tst?sslmode=require
+      - TEST_CKAN_DATASTORE_WRITE_URL=postgresql://${POSTGRES_USER}%40${POSTGRESQL_SERVICE}:${POSTGRES_PASSWORD}@${POSTGRESQL_SERVICE}.${POSTGRESQL_SERVICE_DOMAIN}:5432/${DATABASE_ENV}datastore_tst?sslmode=require
+      - TEST_CKAN_DATASTORE_READ_URL=postgresql://${DATASTORE_USER}%40${POSTGRESQL_SERVICE}:${DS_RO_PASS}@${POSTGRESQL_SERVICE}.${POSTGRESQL_SERVICE_DOMAIN}:5432/${DATABASE_ENV}datastore_tst?sslmode=require
+      - TEST_CKAN_SOLR_URL=${TEST_CKAN_SOLR_URL}
+      - TEST_CKAN_REDIS_URL=${TEST_CKAN_REDIS_URL}
+
     links:
-      - db
+    #  - db
       - solr
       - redis
       - datapusher
@@ -21,14 +61,15 @@ services:
     volumes:
       - ckan_storage:/var/lib/ckan
     restart: always
-    
+
   datapusher:
     container_name: datapusher
-    build:t: datapusher/
+    build:
+      context: datapusher/
     ports:
       - "8800:8800"
     restart: always
-    
+
 # Commented out to use Postgresql service
 # db:
 #    container_name: db
@@ -49,13 +90,14 @@ services:
       context: solr/
     volumes:
       - solr_data:/opt/solr/server/solr/ckan/data/index
+    command: -force
     restart: always
-    
+
   redis:
     container_name: redis
     image: redis:alpine
     restart: always
-    
+
 volumes:
   ckan_storage:
 # Commented out - using postgresql service

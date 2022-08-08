@@ -17,6 +17,21 @@ ckan_ini = os.environ.get("CKAN_INI", "/srv/app/ckan.ini")
 RETRY = 5
 
 
+def init_organizations():
+    url_is_set = os.environ.get('CKAN_SITE_URL')
+    if not url_is_set:
+        print ("[prerun] CKAN_SITE_URL not defined skipping organization photos initialization")
+        return
+    cmd = 'mkdir -p /var/lib/ckan/storage/uploads && \
+           cd /var/lib/ckan/storage/uploads && \
+           curl https://raw.githubusercontent.com/aafc-ckan/ckanext-aafc/master/imports/group-photos.tar.gz > /var/lib/ckan/storage/uploads/group-photos.tar.gz && \
+           tar -xzvf group-photos.tar.gz && \
+           rm group-photos.tar.gz'
+    results = subprocess.check_call(
+           cmd, shell=True, universal_newlines=True)
+    print ("[prerun] Organizations Initialized with Exit Code: " + str(results))
+
+
 def update_plugins():
 
     plugins = os.environ.get("CKAN__PLUGINS", "")
@@ -101,7 +116,6 @@ def init_db():
         else:
             print(e.output)
             raise e
-
 
 def init_datastore_db():
 
@@ -202,3 +216,4 @@ if __name__ == "__main__":
         init_datastore_db()
         check_solr_connection()
         create_sysadmin()
+        init_organizations()

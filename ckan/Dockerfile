@@ -1,6 +1,6 @@
-# If building all from local environment change to 
-#FROM ckan-base:2.8
-FROM ckancontainerreg.azurecr.io/base/ckan-base:2.8.3
+# If building all from local environment change to
+FROM ckan-base:2.9
+#FROM ckancontainerreg.azurecr.io/base/ckan-base:2.8.3
 MAINTAINER Alexis S.
 
 ENV APP_DIR=/srv/app
@@ -15,8 +15,8 @@ RUN chown -R ckan:ckan ${APP_DIR}/*
 #RUN pip install -e git+https://github.com/ckan/ckanext-pages.git#egg=ckanext-pages && \
 #    pip install -e git+https://github.com/ckan/ckanext-dcat.git@v0.0.6#egg=ckanext-dcat && \
 #    pip install -r https://raw.githubusercontent.com/ckan/ckanext-dcat/v0.0.6/requirements.txt
-RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
-    pip install PyYAML && \
+#RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
+RUN pip install PyYAML && \
     pip install ckanapi && \
     pip install geojson && \
     pip install geomet && \
@@ -29,15 +29,15 @@ RUN apt-get -q -y install \
     vim \
     cron
 
-RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
-    pip install -e "git+https://github.com/aafc-ckan/ckanext-scheming.git#egg=ckanext-scheming" && \
+#RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
+RUN pip install -e git+https://github.com/aafc-ckan/ckanext-scheming.git@dev_2.9#egg=ckanext-scheming && \
     pip install -e git+https://github.com/ckan/ckanext-fluent.git#egg=ckanext-fluent && \
-    pip install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/master/requirements-py2.txt && \
+    pip install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/master/requirements.txt && \
     pip install -e git+https://github.com/ckan/ckanext-spatial.git@v1.0.0#egg=ckanext-spatial && \
-    pip install -r https://raw.githubusercontent.com/ckan/ckanext-geoview/master/pip-requirements.txt && \
+    #pip install -r https://raw.githubusercontent.com/ckan/ckanext-geoview/master/pip-requirements.txt && \
     pip install -e git+https://github.com/ckan/ckanext-geoview.git#egg=ckanext-geoview && \
     pip install -e git+https://github.com/ckan/ckanext-pdfview.git#egg=ckanext-pdfview && \
-    pip install -e git+https://github.com/aafc-ckan/ckanext-aafc.git#egg=ckanext-aafc && \
+    pip install -e git+https://github.com/aafc-ckan/ckanext-aafc.git@v2_9dev#egg=ckanext-aafc && \
     pip install -e git+https://github.com/aafc-ckan/ckanext-aafcesas.git#egg=ckanext-aafcesas
 # Clone the extension(s) your are writing for your own project in the `src` folder
 # to get them mounted in this image at runtime
