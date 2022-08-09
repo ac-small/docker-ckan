@@ -30,14 +30,15 @@ RUN apt-get -q -y install \
     cron
 
 #RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
-RUN pip install -e git+https://github.com/aafc-ckan/ckanext-scheming.git@dev_2.9#egg=ckanext-scheming && \
+RUN pip install -e git+https://github.com/aafc-ckan/ckanext-scheming.git@v2_9#egg=ckanext-scheming && \
     pip install -e git+https://github.com/ckan/ckanext-fluent.git#egg=ckanext-fluent && \
     pip install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/master/requirements.txt && \
     pip install -e git+https://github.com/ckan/ckanext-spatial.git@v1.0.0#egg=ckanext-spatial && \
     #pip install -r https://raw.githubusercontent.com/ckan/ckanext-geoview/master/pip-requirements.txt && \
     pip install -e git+https://github.com/ckan/ckanext-geoview.git#egg=ckanext-geoview && \
     pip install -e git+https://github.com/ckan/ckanext-pdfview.git#egg=ckanext-pdfview && \
-    pip install -e git+https://github.com/aafc-ckan/ckanext-aafc.git@v2_9dev#egg=ckanext-aafc && \
+    pip install -e git+https://github.com/aafc-ckan/losser.git#egg=losser && \
+    pip install -e git+https://github.com/aafc-ckan/ckanext-aafc.git@v2_9#egg=ckanext-aafc && \
     pip install -e git+https://github.com/aafc-ckan/ckanext-aafcesas.git#egg=ckanext-aafcesas
 # Clone the extension(s) your are writing for your own project in the `src` folder
 # to get them mounted in this image at runtime
