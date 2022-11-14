@@ -1,9 +1,9 @@
 version: v1.0.0
 steps:
 # Build base and dev target image
-- build: --no-cache -t {{.Run.Registry}}/base/ckan-base:2.8.3 -f ckan-base/2.8/Dockerfile ckan-base/.
-- build: --no-cache -t {{.Run.Registry}}/base/ckan-dev:2.8.3 -f ckan-dev/2.8/Dockerfile ckan-dev/.
+- build: --no-cache -t {{.Run.Registry}}/base/ckan-base:2.9 -f ckan-base/2.9/Dockerfile ckan-base/.
+- build: --no-cache -t {{.Run.Registry}}/base/ckan-dev:2.9 -f ckan-dev/2.9/Dockerfile ckan-dev/.
 # Push image
 - push:
-  - {{.Run.Registry}}/base/ckan-base:2.8.3
-  - {{.Run.Registry}}/base/ckan-dev:2.8.3
+  - {{.Run.Registry}}/base/ckan-base:2.9
+  - {{.Run.Registry}}/base/ckan-dev:2.9

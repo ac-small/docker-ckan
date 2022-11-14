@@ -2,14 +2,14 @@ version: v1.0.0
 steps:
 
 # Build dev target images
-- build: --no-cache -t {{.Run.Registry}}/dev/ckan:2.8.3.latest -f ckan/Dockerfile.dev ckan/.
+- build: --no-cache -t {{.Run.Registry}}/dev/ckan:2.9.latest -f ckan/Dockerfile.dev ckan/.
 - build: --no-cache -t {{.Run.Registry}}/dev/solr:latest -f solr/Dockerfile solr/.
 # Commented out for now: not required every time we rebuild
 #- build: -t {{.Run.Registry}}/dev/datapusher:latest -f datapusher/Dockerfile datapusher/.
 
 # Push image
 - push:
-  - {{.Run.Registry}}/dev/ckan:2.8.3.latest
+  - {{.Run.Registry}}/dev/ckan:2.9.latest
   - {{.Run.Registry}}/dev/solr:latest
 # Commented out for now: not required every time we rebuild
 #  - {{.Run.Registry}}/dev/datapusher:latest
