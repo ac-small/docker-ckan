@@ -1,6 +1,6 @@
-# If building all from local environment change to
-FROM ckan-base:2.9
-#FROM ckancontainerreg.azurecr.io/base/ckan-base:2.8.3
+# If building all from local environment change to 
+#FROM ckan-dev:2.9
+FROM ckancontainerreg.azurecr.io/base/ckan-base:2.9
 MAINTAINER Alexis S.
 
 ENV APP_DIR=/srv/app

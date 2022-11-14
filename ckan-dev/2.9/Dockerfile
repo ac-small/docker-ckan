@@ -1,4 +1,6 @@
-FROM ckan-base:2.9
+# Change to local ckan-base if not pulling from Azure Registry
+# From ckan-base:2.9
+FROM ckancontainerreg.azurecr.io/base/ckan-base:2.9
 
 MAINTAINER Alexis Small
 
