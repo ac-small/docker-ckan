@@ -1,5 +1,5 @@
 # If building all from local environment change to 
-#FROM ckan-dev:2.9
+#FROM ckan-base:2.9
 FROM ckancontainerreg.azurecr.io/base/ckan-base:2.9
 MAINTAINER Alexis S.
 
@@ -15,7 +15,7 @@ RUN chown -R ckan:ckan ${APP_DIR}/*
 #RUN pip install -e git+https://github.com/ckan/ckanext-pages.git#egg=ckanext-pages && \
 #    pip install -e git+https://github.com/ckan/ckanext-dcat.git@v0.0.6#egg=ckanext-dcat && \
 #    pip install -r https://raw.githubusercontent.com/ckan/ckanext-dcat/v0.0.6/requirements.txt
-#RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
+RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
 RUN pip install PyYAML && \
     pip install ckanapi && \
     pip install geojson && \
@@ -29,7 +29,7 @@ RUN apt-get -q -y install \
     vim \
     cron
 
-#RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
+RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
 RUN pip install -e git+https://github.com/aafc-ckan/ckanext-scheming.git#egg=ckanext-scheming && \
     pip install -e git+https://github.com/ckan/ckanext-fluent.git#egg=ckanext-fluent && \
     pip install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/master/requirements.txt && \

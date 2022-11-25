@@ -69,13 +69,14 @@ fi
 # Set the common uwsgi options
 UWSGI_OPTS="--plugins http,python \
             --socket /tmp/uwsgi.sock \
+            --pyhome /srv/app \
             --wsgi-file /srv/app/wsgi.py \
             --module wsgi:application \
             --uid 92 --gid 92 \
             --http 0.0.0.0:5000 \
             --master --enable-threads \
             --lazy-apps \
-            -p 2 -L -b 32768 --vacuum \
+            -p 2 -L -b 32768 \
             --harakiri $UWSGI_HARAKIRI"
 
 
