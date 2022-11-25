@@ -70,7 +70,7 @@ RUN virtualenv ${APP_DIR} && \
 COPY setup/supervisord.conf /etc
 
 # Install CKAN
-RUN . ${APP_DIR}/bin/activate && ${APP_DIR}/src && \
+RUN . ${APP_DIR}/bin/activate && cd ${APP_DIR}/src && \
     pip3 install -e git+${GIT_URL}@${GIT_BRANCH}#egg=ckan && \
     cd ${SRC_DIR}/ckan && \
     cp who.ini ${APP_DIR} && \
@@ -78,7 +78,7 @@ RUN . ${APP_DIR}/bin/activate && ${APP_DIR}/src && \
     pip3 install --no-binary markdown -r requirements.txt
 
 # Install CKAN envvars to support loading config from environment variables
-RUN . ${APP_DIR}/bin/activate && ${APP_DIR}/src && \
+RUN . ${APP_DIR}/bin/activate && cd ${APP_DIR}/src && \
     pip3 install -e git+https://github.com/okfn/ckanext-envvars.git#egg=ckanext-envvars && \
     # Create and update CKAN config
     pip3 install pastescript && \
@@ -92,7 +92,7 @@ RUN groupadd -g 92 -r ckan && \
 
 # Create local storage folder
 RUN mkdir -p $CKAN_STORAGE_PATH && \
-    chown -R ckan:ckan $CKAN_STORAGE_PATH
+    chown -R root:root $CKAN_STORAGE_PATH
 
 # Copy Azure public Postgresql cert
 RUN mkdir -p ${APP_DIR}/.postgresql && \

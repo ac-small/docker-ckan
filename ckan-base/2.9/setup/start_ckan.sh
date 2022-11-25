@@ -39,8 +39,6 @@ echo "Loading the following plugins: $CKAN__PLUGINS"
 . $APP_DIR/bin/activate && cd $APP_DIR && \
     #ckan -c $CKAN_INI db upgrade && \
     python3 prerun.py
-
-chown -R root:root $CKAN_STORAGE_PATH
     
 # Set up crontab to collect tracking information hourly
 # Note: "hourly_tasks.sh" refers to an executable script within the ckanext-aafc
