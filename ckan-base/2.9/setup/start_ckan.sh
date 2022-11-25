@@ -40,7 +40,7 @@ echo "Loading the following plugins: $CKAN__PLUGINS"
     #ckan -c $CKAN_INI db upgrade && \
     python3 prerun.py
 	
-mkdir -p /var/lib/ckan/storage/user && \
+mkdir -p /var/lib/ckan/storage/uploads/user && \
 chown -R root:root $CKAN_STORAGE_PATH/storage
     
 # Set up crontab to collect tracking information hourly
