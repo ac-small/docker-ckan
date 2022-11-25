@@ -75,7 +75,7 @@ RUN . ${APP_DIR}/bin/activate && ${APP_DIR}/src && \
     cd ${SRC_DIR}/ckan && \
     cp who.ini ${APP_DIR} && \
     pip3 install -r requirement-setuptools.txt && \
-    pip3 install --no-binary markdown -r requirements.txt && \
+    pip3 install --no-binary markdown -r requirements.txt
 
 # Install CKAN envvars to support loading config from environment variables
 RUN . ${APP_DIR}/bin/activate && ${APP_DIR}/src && \
@@ -92,7 +92,7 @@ RUN groupadd -g 92 -r ckan && \
 
 # Create local storage folder
 RUN mkdir -p $CKAN_STORAGE_PATH && \
-    chown -R root:root $CKAN_STORAGE_PATH
+    chown -R ckan:ckan $CKAN_STORAGE_PATH
 
 # Copy Azure public Postgresql cert
 RUN mkdir -p ${APP_DIR}/.postgresql && \
