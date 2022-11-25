@@ -92,7 +92,7 @@ RUN groupadd -g 92 -r ckan && \
 
 # Create local storage folder
 RUN mkdir -p $CKAN_STORAGE_PATH && \
-    chown -R root:root $CKAN_STORAGE_PATH
+    chown -R ckan:ckan $CKAN_STORAGE_PATH
 
 # Copy Azure public Postgresql cert
 RUN mkdir -p ${APP_DIR}/.postgresql && \
