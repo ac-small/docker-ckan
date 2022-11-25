@@ -79,7 +79,7 @@ RUN . ${APP_DIR}/bin/activate && ${APP_DIR}/src && \
 
 # Install CKAN envvars to support loading config from environment variables
 RUN . ${APP_DIR}/bin/activate && ${APP_DIR}/src && \
-    pip3 install -e git+https://github.com/okfn/ckanext-envvars.git#egg=ckanext-envvars
+    pip3 install -e git+https://github.com/okfn/ckanext-envvars.git#egg=ckanext-envvars && \
     # Create and update CKAN config
     pip3 install pastescript && \
     pip3 install pastedeploy && \

@@ -16,7 +16,7 @@ RUN chown -R ckan:ckan ${APP_DIR}/*
 #    pip install -e git+https://github.com/ckan/ckanext-dcat.git@v0.0.6#egg=ckanext-dcat && \
 #    pip install -r https://raw.githubusercontent.com/ckan/ckanext-dcat/v0.0.6/requirements.txt
 RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
-RUN pip install PyYAML && \
+    pip install PyYAML && \
     pip install ckanapi && \
     pip install geojson && \
     pip install geomet && \
@@ -30,7 +30,7 @@ RUN apt-get -q -y install \
     cron
 
 RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
-RUN pip install -e git+https://github.com/aafc-ckan/ckanext-scheming.git#egg=ckanext-scheming && \
+    pip install -e git+https://github.com/aafc-ckan/ckanext-scheming.git#egg=ckanext-scheming && \
     pip install -e git+https://github.com/ckan/ckanext-fluent.git#egg=ckanext-fluent && \
     pip install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/master/requirements.txt && \
     pip install -e git+https://github.com/ckan/ckanext-spatial.git@v1.0.0#egg=ckanext-spatial && \
