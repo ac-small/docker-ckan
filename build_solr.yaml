@@ -1,0 +1,9 @@
+version: v1.0.0
+steps:
+
+# Build solr image
+- build: --no-cache -t {{.Run.Registry}}/dev/solr:latest -f solr/Dockerfile solr/.
+
+# Push solr image
+- push:
+  - {{.Run.Registry}}/dev/solr:latest
