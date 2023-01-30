@@ -1,6 +1,6 @@
 # If building all from local environment change to 
 #FROM ckan-dev:2.9
-FROM ckancontainerreg.azurecr.io/base/ckan-dev:2.9
+FROM ckancr.azurecr.io/base/ckan-dev:2.9
 
 MAINTAINER Alexis S.
 

@@ -1,0 +1,9 @@
+version: v1.0.0
+steps:
+
+# Build datapusher image
+- build: --no-cache -t {{.Run.Registry}}/prod/datapusher:latest -f datapusher/Dockerfile datapusher/.
+
+# Push datapusher image
+- push:
+  - {{.Run.Registry}}/prod/datapusher:latest
