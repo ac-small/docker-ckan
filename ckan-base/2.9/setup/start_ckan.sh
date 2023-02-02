@@ -1,40 +1,5 @@
 #!/bin/bash
 
-
-echo "Loading the following plugins: $CKAN__PLUGINS"
-. $APP_DIR/bin/activate && cd $APP_DIR/src && \
-        ckan config-tool $CKAN_INI "ckan.plugins = $CKAN__PLUGINS" && \
-        ckan config-tool $CKAN_INI "ckan.site_url=$CKAN_SITE_URL" && \
-        ckan config-tool $CKAN_INI "ckan.site_title=$CKAN_SITE_TITLE" && \
-        ckan config-tool $CKAN_INI "ckan.locale_order=$CKAN__LOCALE_ORDER" && \
-        ckan config-tool $CKAN_INI "ckan.locales_offered=$CKAN__LOCALES_OFFERED" && \
-        ckan config-tool $CKAN_INI "scheming.dataset_schemas=$CKAN___SCHEMING__DATASET_SCHEMAS" && \
-        ckan config-tool $CKAN_INI "scheming.presets=$CKAN___SCHEMING__PRESETS" && \
-        ckan config-tool $CKAN_INI "scheming.dataset_fallback=$CKAN___SCHEMING__DATASET_FALLBACK"
-        ckan config-tool $CKAN_INI "ckan.search.show_all_types=$CKAN__SEARCH__SHOW_ALL_TYPES" && \
-        ckan config-tool $CKAN_INI "licenses_group_url=$CKAN___LICENSES_GROUP_URL" && \
-        ckan config-tool $CKAN_INI "ckan.views.default_views=$CKAN__VIEWS__DEFAULT_VIEWS" && \
-        ckan config-tool $CKAN_INI "ckanext.geoview.ol_viewer.formats=$CKAN___CKANEXT__GEOVIEW__OL_VIEWER__FORMATS" && \
-        ckan config-tool $CKAN_INI "search.facets.default = $CKAN___SEARCH__FACETS__DEFAULT" && \
-        ckan config-tool $CKAN_INI "release.aafc.registry = $CKAN___REGISTRY__RELEASE__VERSION" && \
-        ckan config-tool $CKAN_INI "ckan.storage_server = $CKAN__STORAGE_PATH" && \
-        ckan config-tool $CKAN_INI "ckan.activity_streams_email_notifications = $CKAN_EMAIL_NOTIFICATIONS" && \
-        ckan config-tool $CKAN_INI "smtp.server = $CKAN_SMTP_SERVER" && \
-        ckan config-tool $CKAN_INI "smtp.starttls = $CKAN_SMTP_STARTTLS" && \
-        ckan config-tool $CKAN_INI "smtp.user = $CKAN_SMTP_USER" && \
-        ckan config-tool $CKAN_INI "smtp.password = $CKAN_SMTP_PASSWORD" && \
-        ckan config-tool $CKAN_INI "smtp.mail_from = $CKAN_SMTP_MAIL_FROM" && \
-        ckan config-tool $CKAN_INI "ckan.redis.url = $CKAN_REDIS_URL" && \
-        ckan config-tool $CKAN_INI "ckan.solr_url = $CKAN_SOLR_URL" && \
-        ckan config-tool $CKAN_INI "ckan.datapusher.url = $CKAN_DATAPUSHER_URL" && \
-        ckan config-tool $CKAN_INI "who.timeout = $CKAN__WHO_TIMEOUT" && \
-        ckan config-tool $CKAN_INI "who.httponly = $CKAN__WHO_HTTPONLY" && \
-        ckan config-tool $CKAN_INI "who.secure = $CKAN__WHO_SECURE" && \
-        ckan config-tool $CKAN_INI "ckan.tracking_enabled = $CKAN__TRACKING_ENABLED" && \
-        ckan config-tool $CKAN_INI "ckan.cors.origin_allow_all = $CKAN__CORS_ORIGIN_ALLOW_ALL" && \
-        ckan config-tool $CKAN_INI "ckan.cors.origin_whitelist = $CKAN__CORS_ORIGIN_WHITELIST" && \
-        ckan config-tool $CKAN_INI "ckan.valid_url_schemes = $CKAN__VALID_URL_SCHEMES"
-
 # Run the prerun script to init CKAN and create the default admin user
 . $APP_DIR/bin/activate && cd $APP_DIR && \
     #ckan -c $CKAN_INI db upgrade && \
