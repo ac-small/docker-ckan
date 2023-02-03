@@ -10,8 +10,7 @@ echo "Loading the following plugins: $CKAN__PLUGINS"
         ckan config-tool $CKAN_INI "ckan.datapusher.url=os.environ['CKAN_DATAPUSHER_URL']" && \
         ckan config-tool $CKAN_INI "who.timeout=os.environ['CKAN_WHO_TIMEOUT']" && \
         ckan config-tool $CKAN_INI "who.httponly=os.environ['CKAN_WHO_SECURE']" && \
-        ckan config-tool $CKAN_INI "who.secure=os.environ['CKAN_WHO_SECURE']" && \
-        ckan config-tool $CKAN_INI "sqlalchemy.url=os.environ['DB_STRING']"
+        ckan config-tool $CKAN_INI "who.secure=os.environ['CKAN_WHO_SECURE']"
 
 
 # Run the prerun script to init CKAN and create the default admin user
