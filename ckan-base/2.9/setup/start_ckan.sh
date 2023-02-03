@@ -1,5 +1,19 @@
 #!/bin/bash
 
+
+echo "Loading the following plugins: $CKAN__PLUGINS"
+. $APP_DIR/bin/activate && cd $APP_DIR/src && \
+        ckan config-tool $CKAN_INI "ckan.site_url = os.environ['CKAN_SITE_URL']" && \
+        ckan config-tool $CKAN_INI "release.aafc.registry = os.environ['CKAN___REGISTRY__RELEASE__VERSION']" && \
+        ckan config-tool $CKAN_INI "ckan.redis.url = os.environ['CKAN_REDIS_URL']" && \
+        ckan config-tool $CKAN_INI "ckan.solr_url = os.environ['CKAN_SOLR_URL']" && \
+        ckan config-tool $CKAN_INI "ckan.datapusher.url = os.environ['CKAN_DATAPUSHER_URL']" && \
+        ckan config-tool $CKAN_INI "who.timeout = os.environ['CKAN_WHO_TIMEOUT']" && \
+        ckan config-tool $CKAN_INI "who.httponly = os.environ['CKAN_WHO_SECURE']" && \
+        ckan config-tool $CKAN_INI "who.secure = os.environ['CKAN_WHO_SECURE']" && \
+		ckan config-tool $CKAN_INI "sqlalchemy.url = os.environ['DB_STRING']"
+
+
 # Run the prerun script to init CKAN and create the default admin user
 . $APP_DIR/bin/activate && cd $APP_DIR && \
     #ckan -c $CKAN_INI db upgrade && \
