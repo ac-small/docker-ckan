@@ -11,7 +11,7 @@ echo "Loading the following plugins: $CKAN__PLUGINS"
         ckan config-tool $CKAN_INI "who.timeout=os.environ['CKAN_WHO_TIMEOUT']" && \
         ckan config-tool $CKAN_INI "who.httponly=os.environ['CKAN_WHO_SECURE']" && \
         ckan config-tool $CKAN_INI "who.secure=os.environ['CKAN_WHO_SECURE']" && \
-        ckan config-tool $CKAN_INI "sqlalchemy.url=postgresql://ckanadmin:admin5252!@ckan-psql.postgres.database.azure.com/devckan?sslmode=require"
+        ckan config-tool $CKAN_INI "sqlalchemy.url=os.environ['DB_STRING']
 
 
 # Run the prerun script to init CKAN and create the default admin user
