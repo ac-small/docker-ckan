@@ -3,7 +3,7 @@
 
 echo "Loading the following plugins: $CKAN__PLUGINS"
 . $APP_DIR/bin/activate && cd $APP_DIR/src && \
-        ckan config-tool $CKAN_INI "ckan.site_url=os.environ['CKAN_SITE_URL']" && \
+        ckan config-tool $CKAN_INI ckan.site_url=os.environ['CKAN_SITE_URL'] && \
         ckan config-tool $CKAN_INI "release.aafc.registry=os.environ['CKAN___REGISTRY__RELEASE__VERSION']" && \
         ckan config-tool $CKAN_INI "ckan.redis.url=os.environ['CKAN_REDIS_URL']" && \
         ckan config-tool $CKAN_INI "ckan.solr_url=os.environ['CKAN_SOLR_URL']" && \
