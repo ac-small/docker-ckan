@@ -18,10 +18,17 @@ RETRY = 5
 
 
 def load_ckanini():
-    print(("*!*!*!*!*![prerun]*!*!*!*!*!*! setting ini file"))
-    print(os.environ.get("CKAN_SQLALCHEMY_URL"))
     cmd = ["ckan", "config-tool", ckan_ini, "sqlalchemy.url = {}".format(os.environ.get("CKAN_SQLALCHEMY_URL"))]
+    cmd2 = ["ckan", "config-tool", ckan_ini, "ckan.redis.url = {}".format(os.environ.get("CKAN_REDIS_URL"))]
+    cmd3 = ["ckan", "config-tool", ckan_ini, "ckan.solr_url = {}".format(os.environ.get("CKAN_SOLR_URL"))]
+    cmd4 = ["ckan", "config-tool", ckan_ini, "ckan.site_url = {}".format(os.environ.get("CKAN_SITE_URL"))]
+    cmd5 = ["ckan", "config-tool", ckan_ini, "ckan.datapusher.url = {}".format(os.environ.get("CKAN_DATAPUSHER_URL"))]
+    
     subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+    subprocess.check_output(cmd2, stderr=subprocess.STDOUT)
+    subprocess.check_output(cmd3, stderr=subprocess.STDOUT)
+    subprocess.check_output(cmd4, stderr=subprocess.STDOUT)
+    subprocess.check_output(cmd5, stderr=subprocess.STDOUT)
 
 def init_organizations():
     url_is_set = os.environ.get('CKAN_SITE_URL')
