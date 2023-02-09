@@ -18,7 +18,7 @@ RETRY = 5
 
 
 def load_ckanini():
-    print(("*!*!*!*!*![prerun]*!*!*!*!*!*! setting ini file))
+    print(("*!*!*!*!*![prerun]*!*!*!*!*!*! setting ini file"))
     print(os.environ.get("CKAN_SQLALCHEMY_URL"))
     cmd = ["ckan", "config-tool", ckan_ini, "sqlalchemy.url = {}".format(os.environ.get("CKAN_SQLALCHEMY_URL"))]
     subprocess.check_output(cmd, stderr=subprocess.STDOUT)
