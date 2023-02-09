@@ -17,6 +17,12 @@ ckan_ini = os.environ.get("CKAN_INI", "/srv/app/ckan.ini")
 RETRY = 5
 
 
+def load_ckanini():
+    print(("*!*!*!*!*![prerun]*!*!*!*!*!*! setting ini file))
+    print(os.environ.get("CKAN_SQLALCHEMY_URL"))
+    cmd = ["ckan", "config-tool", ckan_ini, "sqlalchemy.url = {}".format(os.environ.get("CKAN_SQLALCHEMY_URL"))]
+    subprocess.check_output(cmd, stderr=subprocess.STDOUT)
+
 def init_organizations():
     url_is_set = os.environ.get('CKAN_SITE_URL')
     if not url_is_set:
@@ -214,6 +220,7 @@ if __name__ == "__main__":
     if maintenance:
         print("[prerun] Maintenance mode, skipping setup...")
     else:
+        load_ckanini()
         check_main_db_connection()
         init_db()
         update_plugins()
