@@ -1,0 +1,9 @@
+version: v1.0.0
+steps:
+
+# Build postgres db image
+- build: --no-cache -t {{.Run.Registry}}/dev/postgres:latest -f postgresql/Dockerfile postgresql/.
+
+# Push postgres db image
+- push:
+  - {{.Run.Registry}}/dev/postgres:latest
