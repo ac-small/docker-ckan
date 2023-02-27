@@ -16,20 +16,6 @@ ckan_ini = os.environ.get("CKAN_INI", "/srv/app/ckan.ini")
 
 RETRY = 5
 
-
-def load_ckanini():
-    cmd = ["ckan", "config-tool", ckan_ini, "sqlalchemy.url = {}".format(os.environ.get("CKAN_SQLALCHEMY_URL"))]
-    cmd2 = ["ckan", "config-tool", ckan_ini, "ckan.redis.url = {}".format(os.environ.get("CKAN_REDIS_URL"))]
-    cmd3 = ["ckan", "config-tool", ckan_ini, "ckan.solr_url = {}".format(os.environ.get("CKAN_SOLR_URL"))]
-    cmd4 = ["ckan", "config-tool", ckan_ini, "ckan.site_url = {}".format(os.environ.get("CKAN_SITE_URL"))]
-    cmd5 = ["ckan", "config-tool", ckan_ini, "ckan.datapusher.url = {}".format(os.environ.get("CKAN_DATAPUSHER_URL"))]
-    
-    subprocess.check_output(cmd, stderr=subprocess.STDOUT)
-    subprocess.check_output(cmd2, stderr=subprocess.STDOUT)
-    subprocess.check_output(cmd3, stderr=subprocess.STDOUT)
-    subprocess.check_output(cmd4, stderr=subprocess.STDOUT)
-    subprocess.check_output(cmd5, stderr=subprocess.STDOUT)
-
 def init_organizations():
     url_is_set = os.environ.get('CKAN_SITE_URL')
     if not url_is_set:
@@ -61,7 +47,7 @@ def update_plugins():
 
 
 def check_main_db_connection(retry=None):
-
+    print("[prerun] CHECKING MAIN DB CONN ...")
     conn_str = os.environ.get("CKAN_SQLALCHEMY_URL")
     if not conn_str:
         print("[prerun] CKAN_SQLALCHEMY_URL not defined, not checking db")
@@ -69,7 +55,7 @@ def check_main_db_connection(retry=None):
 
 
 def check_datastore_db_connection(retry=None):
-
+    print("[prerun] CHECKING DATASTORE DB CONN ...")
     conn_str = os.environ.get("CKAN_DATASTORE_WRITE_URL")
     if not conn_str:
         print("[prerun] CKAN_DATASTORE_WRITE_URL not defined, not checking db")
@@ -77,7 +63,7 @@ def check_datastore_db_connection(retry=None):
 
 
 def check_db_connection(conn_str, retry=None):
-
+    print("[prerun] CHECKING DB CONN ...")
     if retry is None:
         retry = RETRY
     elif retry == 0:
@@ -97,7 +83,7 @@ def check_db_connection(conn_str, retry=None):
 
 
 def check_solr_connection(retry=None):
-
+    print("[prerun] CHECKING SOLR CONN ...")
     if retry is None:
         retry = RETRY
     elif retry == 0:
@@ -119,7 +105,7 @@ def check_solr_connection(retry=None):
 
 
 def init_db():
-
+    print("[prerun] INIT DB ...")
     db_command = ["ckan", "-c", ckan_ini, "db", "init"]
     print("[prerun] Initializing or upgrading db - start")
     try:
@@ -136,7 +122,7 @@ def init_db():
             raise e
 
 def init_datastore_db():
-
+    print("[prerun] INIT DATASTORE DB ...")
     conn_str = os.environ.get("CKAN_DATASTORE_WRITE_URL")
     if not conn_str:
         print("[prerun] Skipping datastore initialization")
@@ -227,7 +213,6 @@ if __name__ == "__main__":
     if maintenance:
         print("[prerun] Maintenance mode, skipping setup...")
     else:
-        load_ckanini()
         check_main_db_connection()
         init_db()
         update_plugins()

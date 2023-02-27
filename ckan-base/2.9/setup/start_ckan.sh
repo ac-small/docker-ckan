@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "STARTING CKAN ... "
 # Run the prerun script to init CKAN and create the default admin user
 . $APP_DIR/bin/activate && cd $APP_DIR && \
     #ckan -c $CKAN_INI db upgrade && \
