@@ -33,7 +33,6 @@ RUN apt-get -q -y update \
         uwsgi-core \
         uwsgi-plugin-python3 \
         python3-gevent \
-        python3-psycopg2 \
         libmagic1 \
         curl \
         patch \
