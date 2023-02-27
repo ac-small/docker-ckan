@@ -3,7 +3,7 @@
 echo "STARTING CKAN ... "
 # Run the prerun script to init CKAN and create the default admin user
 
-python3 prerun.py
+sudo -u ckan -EH python3 prerun.py
 	
 mkdir -p /var/lib/ckan/storage/uploads/user && \
 chown -R root:root $CKAN_STORAGE_PATH/storage
