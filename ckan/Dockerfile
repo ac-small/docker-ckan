@@ -7,16 +7,7 @@ ENV APP_DIR=/srv/app
 
 RUN chown -R ckan:ckan ${APP_DIR}/*
 
-#USER ckan
-
-# Install any extensions needed by your CKAN instance
-# (Make sure to add the plugins to CKAN__PLUGINS in the .env file)
-# For instance:
-#RUN pip install -e git+https://github.com/ckan/ckanext-pages.git#egg=ckanext-pages && \
-#    pip install -e git+https://github.com/ckan/ckanext-dcat.git@v0.0.6#egg=ckanext-dcat && \
-#    pip install -r https://raw.githubusercontent.com/ckan/ckanext-dcat/v0.0.6/requirements.txt
-RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
-    pip install PyYAML && \
+RUN pip install PyYAML && \
     pip install ckanapi && \
     pip install geojson && \
     pip install geomet && \
@@ -29,8 +20,7 @@ RUN apt-get -q -y install \
     vim \
     cron
 
-RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
-    pip install -e git+https://github.com/aafc-ckan/ckanext-scheming.git#egg=ckanext-scheming && \
+RUN pip install -e git+https://github.com/aafc-ckan/ckanext-scheming.git#egg=ckanext-scheming && \
     pip install -e git+https://github.com/ckan/ckanext-fluent.git#egg=ckanext-fluent && \
     pip install -r https://raw.githubusercontent.com/ckan/ckanext-spatial/master/requirements.txt && \
     pip install -e git+https://github.com/ckan/ckanext-spatial.git@v1.0.0#egg=ckanext-spatial && \
@@ -40,15 +30,7 @@ RUN . $APP_DIR/bin/activate && cd $APP_DIR/src && \
     pip install -e git+https://github.com/aafc-ckan/losser.git#egg=losser && \
     pip install -e git+https://github.com/aafc-ckan/ckanext-aafc.git#egg=ckanext-aafc && \
     pip install -e git+https://github.com/aafc-ckan/ckanext-aafcesas.git#egg=ckanext-aafcesas
-# Clone the extension(s) your are writing for your own project in the `src` folder
-# to get them mounted in this image at runtime
 
-# Install the extension(s) you wrote for your own project
-# RUN pip install -e git+https://github.com/your-org/ckanext-your-extension.git@v1.0.0#egg=ckanext-your-extension
-
-# Apply any patches needed to CKAN core or any of the built extensions (not the
-# runtime mounted ones)
-# See https://github.com/okfn/docker-ckan#applying-patches
 COPY patches ${APP_DIR}/patches
 
 RUN for d in $APP_DIR/patches/*; do \
@@ -58,8 +40,3 @@ RUN for d in $APP_DIR/patches/*; do \
             done ; \
         fi ; \
     done
-
-# RUN chown -R ckan:ckan ${APP_DIR}/*
-
-# Prod build fails when user is ckan at the end of this script
-#USER ckan

@@ -64,21 +64,15 @@ RUN apt-get -q -y update \
     #pip wheel --wheel-dir=/wheels uwsgi gevent && \
     rm -rf ${SRC_DIR}/get-pip.py
 
-RUN virtualenv ${APP_DIR} && \
-    ln -s ${APP_DIR}/bin/pip /usr/local/bin/ckan-pip
-
 COPY setup/supervisord.conf /etc
 
 # Install CKAN
-RUN . ${APP_DIR}/bin/activate && cd ${APP_DIR}/src && \
-    pip3 install -e git+${GIT_URL}@${GIT_BRANCH}#egg=ckan && \
+RUN pip3 install -e git+${GIT_URL}@${GIT_BRANCH}#egg=ckan && \
     cd ${SRC_DIR}/ckan && \
     cp who.ini ${APP_DIR} && \
     pip3 install -r requirement-setuptools.txt && \
-    pip3 install --no-binary markdown -r requirements.txt
-
-# Install CKAN envvars to support loading config from environment variables
-RUN . ${APP_DIR}/bin/activate && cd ${APP_DIR}/src && \
+    pip3 install --no-binary markdown -r requirements.txt && \
+    # Install CKAN envvars to support loading config from environment variables
     pip3 install -e git+https://github.com/okfn/ckanext-envvars.git#egg=ckanext-envvars && \
     # Create and update CKAN config
     pip3 install pastescript && \
@@ -114,7 +108,5 @@ RUN chown ckan -R /srv/app
 EXPOSE 5000
 
 HEALTHCHECK --interval=60s --timeout=5s --retries=5 CMD curl --fail http://localhost:5000/api/3/action/status_show || exit 1
-
-USER root
 
 CMD ["/srv/app/start_ckan.sh"]
