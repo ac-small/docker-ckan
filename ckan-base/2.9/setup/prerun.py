@@ -44,7 +44,7 @@ def init_groups():
         print ("[prerun] CKAN_SITE_URL not defined skipping group initialization")
         return
     cmd = 'mkdir -p /srv/app/temp && \
-           cd  srv/app/temp && \
+           cd srv/app/temp && \
            curl https://raw.githubusercontent.com/aafc-ckan/ckanext-aafc/master/imports/default_groups.json.gz > /srv/app/temp/default_group_data.json.gz && \
            gunzip default_group_data.json.gz && \
            cd /srv/app/temp && \
