@@ -25,7 +25,14 @@ def init_organizations():
            cd /var/lib/ckan/storage/uploads && \
            curl https://raw.githubusercontent.com/aafc-ckan/ckanext-aafc/master/imports/group-photos.tar.gz > /var/lib/ckan/storage/uploads/group-photos.tar.gz && \
            tar -xzvf group-photos.tar.gz && \
-           rm group-photos.tar.gz'
+           rm group-photos.tar.gz && \
+           mkdir -p ${APP_DIR}/temp && \
+           cd  ${APP_DIR}/temp && \
+           curl https://raw.githubusercontent.com/aafc-ckan/ckanext-aafc/master/imports/org_data.json.gz > ${APP_DIR}/temp/org_data.json.gz && \
+           gunzip org_data.json.gz && \
+           . $APP_DIR/bin/activate && cd $APP_DIR/temp && \
+           ckanapi load organizations -I org_data.json -c ckan_ini && \
+           rm -rf ${APP_DIR}/temp'
     results = subprocess.check_call(
            cmd, shell=True, universal_newlines=True)
     print ("[prerun] Organizations Initialized with Exit Code: " + str(results))
