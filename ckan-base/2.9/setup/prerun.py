@@ -31,11 +31,28 @@ def init_organizations():
            curl https://raw.githubusercontent.com/aafc-ckan/ckanext-aafc/master/imports/org_data.json.gz > /srv/app/temp/org_data.json.gz && \
            gunzip org_data.json.gz && \
            cd /srv/app/temp && \
-           ckanapi load organizations -I org_data.json -c ckan_ini && \
+           ckanapi load organizations -I org_data.json -c /srv/app/ckan.ini && \
            rm -rf /srv/app/temp'
     results = subprocess.check_call(
            cmd, shell=True, universal_newlines=True)
     print ("[prerun] Organizations Initialized with Exit Code: " + str(results))
+    
+    
+def init_groups():
+    url_is_set = os.environ.get('CKAN_SITE_URL')
+    if not url_is_set:
+        print '[prerun] CKAN_SITE_URL not defined skipping group initialization'
+        return
+    cmd = 'mkdir -p /srv/app/temp && \
+           cd  srv/app/temp && \
+           curl https://raw.githubusercontent.com/aafc-ckan/ckanext-aafc/master/imports/default_groups.json.gz > /srv/app/temp/default_group_data.json.gz && \
+           gunzip default_group_data.json.gz && \
+           cd /srv/app/temp && \
+           ckanapi load groups -I default_group_data.json -c /srv/app/ckan.ini && \
+           rm -rf /srv/app/temp'
+    results = subprocess.check_call(
+           cmd, shell=True, universal_newlines=True)
+    print '[prerun] Groups Initialized with Exit Code: ' + str(results)
 
 
 def rebuild_index():
@@ -229,3 +246,4 @@ if __name__ == "__main__":
         create_sysadmin()
         rebuild_index()
         init_organizations()
+        init_groups()
