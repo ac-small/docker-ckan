@@ -41,7 +41,7 @@ def init_organizations():
 def init_groups():
     url_is_set = os.environ.get('CKAN_SITE_URL')
     if not url_is_set:
-        print '[prerun] CKAN_SITE_URL not defined skipping group initialization'
+        print ("[prerun] CKAN_SITE_URL not defined skipping group initialization")
         return
     cmd = 'mkdir -p /srv/app/temp && \
            cd  srv/app/temp && \
@@ -52,7 +52,7 @@ def init_groups():
            rm -rf /srv/app/temp'
     results = subprocess.check_call(
            cmd, shell=True, universal_newlines=True)
-    print '[prerun] Groups Initialized with Exit Code: ' + str(results)
+    print ("[prerun] Groups Initialized with Exit Code: " + str(results))
 
 
 def rebuild_index():
