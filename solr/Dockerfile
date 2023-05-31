@@ -1,4 +1,4 @@
-FROM solr:6.6.5
+FROM solr:7.7.3
 MAINTAINER Alexis S.
 
 # Enviroment
@@ -13,12 +13,12 @@ RUN mkdir -p /opt/solr/server/solr/$SOLR_CORE/data
 
 # Adding Files
 ADD solrconfig.xml \
-https://raw.githubusercontent.com/aafc-ckan/docker-ckan/master/solr/schema.xml \
-https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.5/solr/server/solr/configsets/sample_techproducts_configs/conf/currency.xml \
-https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.5/solr/server/solr/configsets/basic_configs/conf/synonyms.txt \
-https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.5/solr/server/solr/configsets/basic_configs/conf/stopwords.txt \
-https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.5/solr/server/solr/configsets/basic_configs/conf/protwords.txt \
-https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/6.6.5/solr/server/solr/configsets/data_driven_schema_configs/conf/elevate.xml \
+schema.xml \
+https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/7.7.3/solr/server/solr/configsets/sample_techproducts_configs/conf/currency.xml \
+https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/7.7.3/solr/server/solr/configsets/_default/conf/synonyms.txt \
+https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/7.7.3/solr/server/solr/configsets/_default/conf/stopwords.txt \
+https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/7.7.3/solr/server/solr/configsets/_default/conf/protwords.txt \
+https://raw.githubusercontent.com/apache/lucene-solr/releases/lucene-solr/7.7.3/solr/server/solr/configsets/sample_techproducts_configs/conf/elevate.xml \
 /opt/solr/server/solr/$SOLR_CORE/conf/
 
 RUN cd /opt/solr/server/lib/ext
